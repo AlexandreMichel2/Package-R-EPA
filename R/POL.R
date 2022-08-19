@@ -1,6 +1,7 @@
 #### CONFIGURATION ####
 
 requireNamespace("devtools", quietly = TRUE)
+requireNamespace("installr", quietly = TRUE)
 requireNamespace("conflicted", quietly = TRUE)
 requireNamespace("showtext", quietly = TRUE)
 requireNamespace("WDI", quietly = TRUE)
