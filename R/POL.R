@@ -359,7 +359,7 @@ Importer = function(indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
 Renommer = function(base, anciens_noms, nouv_noms)
 {
   cat("\n")
-  for(i in seq_length(anciens_noms)){
+  for(i in 1:length(anciens_noms)){
     base = dplyr::rename(base, !! nouv_noms[i] := !! anciens_noms[i])
   }
   cat("\n")
