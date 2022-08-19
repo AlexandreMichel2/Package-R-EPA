@@ -1,0 +1,58 @@
+Package: EPA
+Type: Package
+Title: Contient des fonctions utiles à l'analyse statistique en sciences politiques
+Version: 0.1.0
+Authors@R: person(
+  "Alexandre", "Michel",
+  email = "Alexandre.Michel@USherbrooke.ca",
+  role = "cre"
+  )
+Description: Ce package personnalisé pour l'École de politique appliquée de l'Université de Sherbrooke contient plusieurs fonctions importantes à l'analyse statistique telle qu'enseignée dans le cursus scolaire. Ces fonctions seront utiles utiles pour les personnes étudiantes de tous les cycles, mais aussi pour toute personne qui vise à faciliter son utilisation de RStudio afin d'analyser des données qualitatives ou quantitatives.
+    Ce package contient un thème par défaut pour des graphiques faits à partir de ggplot2, adapté au papier de format lettre, un thème par défaut pour des graphiques en pointe de tarte, une fonction pour calculer automatiquement une marge d'erreur, une fonction pour retirer automatiquement l'équation d'une droite de régression et l'apposer sur un graphique, une fonction unique et interactive pour importer une base de données, peu importe le format de sa source, une fonction pour renommer plus facilement des colonnes dans une base de données, une fonction pour faire des tableaux de valeurs absolues qui affichent les noms des variables en colonnes et en rangées, deux fonctions pour les analyses univariées (qualitative et quantitative), puis trois fonctions distinctes pour les trois types d'analyses bivariées (qualitative + qualitative, qualitative + quantitative et quantitative + quantitative).
+    Il s'agit d'un package unique en son genre, un des seuls en langue française. Il a été entièrement développé et maintenu par Alexandre Michel, étudiant à la maîtrise à l'École de politique appliquée de l'Université de Sherbrooke.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: false
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Depends: 
+    devtools,
+    conflicted,
+    showtext,
+    WDI,
+    lsr,
+    Hmisc,
+    vcd,
+    questionr,
+    gmodels,
+    car,
+    DescTools,
+    multcomp,
+    FactoMineR,
+    rworldmap,
+    dplyr,
+    ggplot2,
+    forcats,
+    readr,
+    stringr,
+    purrr,
+    tibble,
+    tidyr,
+    ggthemes,
+    ggtext,
+    ggpubr,
+    ggpmisc,
+    ggrepel,
+    ggcharts,
+    ggforce,
+    openxlsx,
+    scales,
+    lubridate,
+    svglite,
+    ragg,
+    cowplot,
+    googleway,
+    ggspatial,
+    sf,
+    rnaturalearth,
+    rnaturalearthdata
