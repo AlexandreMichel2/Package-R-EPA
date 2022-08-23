@@ -289,7 +289,7 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
   format = as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = Package WDI \n"))
   cat("\n")
   if (format == 1) {
-    if (data == NULL) {
+    if (is.null(data)) {
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
@@ -297,14 +297,14 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
-    } else if (data != NULL) {
+    } else if (!is.null(data)) {
       fichier = as.character(data)
     }
     cat("\n")
     feuille = as.numeric(readline(prompt = "Entrez le numéro de la feuille Excel désirée (1, 2, 3, etc.) :  \n"))
     base = openxlsx::read.xlsx(fichier, sheet = feuille, colNames = colonnes)
   } else if (format == 2) {
-    if (data == NULL) {
+    if (is.null(data)) {
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
@@ -312,13 +312,13 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
-    } else if (data != NULL) {
+    } else if (!is.null(data)) {
       fichier = as.character(data)
     }
     cat("\n")
     base = utils::read.csv(fichier, header = colonnes, encoding = encodage)
   } else if (format == 3) {
-    if (data == NULL) {
+    if (is.null(data)) {
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
@@ -326,13 +326,13 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
-    } else if (data != NULL) {
+    } else if (!is.null(data)) {
       fichier = as.character(data)
     }
     cat("\n")
     base = utils::read.csv2(fichier, header = colonnes, encoding = encodage)
   } else if (format == 4) {
-    if (data == NULL) {
+    if (is.null(data)) {
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
@@ -340,7 +340,7 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
-    } else if (data != NULL) {
+    } else if (!is.null(data)) {
       fichier = as.character(data)
     }
     cat("\n")
