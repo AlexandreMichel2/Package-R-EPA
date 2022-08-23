@@ -76,7 +76,10 @@ requireNamespace("rnaturalearthdata", quietly = TRUE)
 
 #### THÈMES GRAPHS GGPLOT2 ####
 
-`:=` <- function(a,b) {stop(":= should not be called directly")}
+`:=` <- function(a, b)
+{
+  stop(":= should not be called directly")
+}
 
 #' lm_eq
 #'
@@ -89,10 +92,10 @@ lm_eq = function(x, y)
 {
   modele = stats::lm(y ~ x)
   coeff = stats::coefficients(modele)
-  if (round(coeff[1],1) >= 0){
-    eq = as.character(paste0("y == ", round(coeff[2],1), "*x + ", round(coeff[1],1)))
-  } else if (round(coeff[1],1) < 0){
-    eq = as.character(paste0("y == ", round(coeff[2],1), "*x ", round(coeff[1],1)))
+  if (round(coeff[1], 1) >= 0){
+    eq = as.character(paste0("y == ", round(coeff[2], 1), "*x + ", round(coeff[1], 1)))
+  } else if (round(coeff[1], 1) < 0){
+    eq = as.character(paste0("y == ", round(coeff[2], 1), "*x ", round(coeff[1], 1)))
   }
   eq
 }
@@ -280,52 +283,68 @@ MargeErreur = function()
 #' @return Retourne un dataframe transformé en "tibble" pour en faciliter les manipulations.
 #' @description Fonction interactive qui permet d'importer une base de données à partir d'un fichier, d'un URL ou de la fonction WDI() du package éponyme.
 #' @export
-Importer = function(indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
+Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
 {
   cat("\n")
   format = as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = Package WDI \n"))
   cat("\n")
-  if (format == 1){
-    type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-    cat("\n")
-    if (type == 1) {
-      fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
-    } else if (type == 2) {
-      fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+  if (format == 1) {
+    if (data == NULL) {
+      type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
+      cat("\n")
+      if (type == 1) {
+        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+      } else if (type == 2) {
+        fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+      }
+    } else if (data != NULL) {
+      fichier = as.character(data)
     }
     cat("\n")
     feuille = as.numeric(readline(prompt = "Entrez le numéro de la feuille Excel désirée (1, 2, 3, etc.) :  \n"))
     base = openxlsx::read.xlsx(fichier, sheet = feuille, colNames = colonnes)
-  } else if (format == 2){
-    type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-    cat("\n")
-    if (type == 1) {
-      fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
-    } else if (type == 2) {
-      fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+  } else if (format == 2) {
+    if (data == NULL) {
+      type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
+      cat("\n")
+      if (type == 1) {
+        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+      } else if (type == 2) {
+        fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+      }
+    } else if (data != NULL) {
+      fichier = as.character(data)
     }
     cat("\n")
     base = utils::read.csv(fichier, header = colonnes, encoding = encodage)
-  } else if (format == 3){
-    type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-    cat("\n")
-    if (type == 1) {
-      fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
-    } else if (type == 2) {
-      fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+  } else if (format == 3) {
+    if (data == NULL) {
+      type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
+      cat("\n")
+      if (type == 1) {
+        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+      } else if (type == 2) {
+        fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+      }
+    } else if (data != NULL) {
+      fichier = as.character(data)
     }
     cat("\n")
     base = utils::read.csv2(fichier, header = colonnes, encoding = encodage)
-  } else if (format == 4){
-    type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-    cat("\n")
-    if (type == 1) {
-      fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
-    } else if (type == 2) {
-      fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+  } else if (format == 4) {
+    if (data == NULL) {
+      type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
+      cat("\n")
+      if (type == 1) {
+        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+      } else if (type == 2) {
+        fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+      }
+    } else if (data != NULL) {
+      fichier = as.character(data)
     }
     cat("\n")
-    base = Hmisc::spss.get(file.choose(), use.value.labels = colonnes, encoding = encodage)
+    base = Hmisc::spss.get(fichier, use.value.labels = colonnes, encoding = encodage)
   } else if (format == 5){
     nbr_pays = as.numeric(readline(prompt = "Entrez le nombre de pays pour lesquels les données seront importées :  \n"))
     cat("\n")
