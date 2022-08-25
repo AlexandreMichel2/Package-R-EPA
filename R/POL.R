@@ -359,7 +359,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       fichier = as.character(data)
     }
     cat("\n")
-    base = read_dta(fichier)
+    base = haven::read_dta(fichier)
   } else if (format == 6) {
     nbr_pays = as.numeric(readline(prompt = "Entrez le nombre de pays pour lesquels les données seront importées :  \n"))
     cat("\n")
