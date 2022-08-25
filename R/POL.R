@@ -807,7 +807,11 @@ bivar_quanti_quanti = function(variable_X, variable_Y, na.rm = TRUE)
   return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
 
+#### ANALYSE MULTIVARIÉE REGRESSION LINEAIRE ####
 
+#### ANALYSE MULTIVARIÉE REGRESSION LOGISTIQUE ####
+
+#### ANALYSE MULTIVARIÉE ANALYSES FACTORIELLES ####
 
 #### NOTES SUPPLÉMENTAIRES ####
 
