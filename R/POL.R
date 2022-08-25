@@ -9,6 +9,7 @@ requireNamespace("vcd", quietly = TRUE)
 requireNamespace("questionr", quietly = TRUE)
 requireNamespace("gmodels", quietly = TRUE)
 requireNamespace("car", quietly = TRUE)
+requireNamespace("haven", quietly = TRUE)
 requireNamespace("DescTools", quietly = TRUE)
 requireNamespace("multcomp", quietly = TRUE)
 requireNamespace("FactoMineR", quietly = TRUE)
@@ -286,7 +287,7 @@ MargeErreur = function()
 Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
 {
   cat("\n")
-  format = as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = Package WDI \n"))
+  format = as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = .dta \n 6 = Package WDI \n"))
   cat("\n")
   if (format == 1) {
     if (is.null(data)) {
@@ -345,7 +346,21 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
     }
     cat("\n")
     base = Hmisc::spss.get(fichier, use.value.labels = colonnes, encoding = encodage)
-  } else if (format == 5){
+  } else if (format == 5) {
+    if (is.null(data)) {
+      type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
+      cat("\n")
+      if (type == 1) {
+        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+      } else if (type == 2) {
+        fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
+      }
+    } else if (!is.null(data)) {
+      fichier = as.character(data)
+    }
+    cat("\n")
+    base = haven::read_dta(fichier, encoding = encodage)
+  } else if (format == 6){
     nbr_pays = as.numeric(readline(prompt = "Entrez le nombre de pays pour lesquels les données seront importées :  \n"))
     cat("\n")
     pays = c()

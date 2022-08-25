@@ -25,6 +25,7 @@ Depends:
     questionr,
     gmodels,
     car,
+    haven,
     DescTools,
     multcomp,
     FactoMineR,
