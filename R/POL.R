@@ -93,9 +93,9 @@ lm_eq = function(x, y)
 {
   modele = stats::lm(y ~ x)
   coeff = stats::coefficients(modele)
-  if (round(coeff[1], 1) >= 0){
+  if (round(coeff[1], 1) >= 0) {
     eq = as.character(paste0("y == ", round(coeff[2], 1), "*x + ", round(coeff[1], 1)))
-  } else if (round(coeff[1], 1) < 0){
+  } else if (round(coeff[1], 1) < 0) {
     eq = as.character(paste0("y == ", round(coeff[2], 1), "*x ", round(coeff[1], 1)))
   }
   eq
@@ -122,7 +122,7 @@ theme_pie = function(couleur = "#018849", legende = TRUE)
         legend.title = ggplot2::element_text(face = "bold", size = 12, color = couleur, hjust = 0.5),
         legend.text = ggplot2::element_text(face = "plain", size = 8, color = "black", lineheight = 0.75),
         legend.position = "right",
-        legend.margin = ggplot2::margin(0,0,0,0),
+        legend.margin = ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2.5),
         panel.grid.major = ggplot2::element_blank(),
         panel.grid.minor = ggplot2::element_blank(),
@@ -141,7 +141,7 @@ theme_pie = function(couleur = "#018849", legende = TRUE)
         axis.line = ggplot2::element_blank(),
         axis.ticks = ggplot2::element_blank(),
         legend.position = "none",
-        legend.margin = ggplot2::margin(0,0,0,0),
+        legend.margin = ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2.5),
         panel.grid.major = ggplot2::element_blank(),
         panel.grid.minor = ggplot2::element_blank(),
@@ -180,10 +180,10 @@ theme_defaut = function(couleur = "#018849", grille = "x", grille_top = FALSE)
         panel.ontop = grille_top,
         panel.border = ggplot2::element_rect(colour = "black", fill = NA),
         legend.position = "right",
-        legend.margin=ggplot2::margin(0,0,0,0),
+        legend.margin=ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2)
       )
-  } else if (grille == "v"){
+  } else if (grille == "v") {
     theme = ggplot2::theme_bw(base_family = "Inter", base_line_size = 0.25) +
       theme(
         plot.title = ggplot2::element_text(face = "bold", size = 14, color = couleur, hjust = 0.5, vjust = 1, margin = ggplot2::margin(t = 5, r = 10, b = 10, l = 10)),
@@ -201,10 +201,10 @@ theme_defaut = function(couleur = "#018849", grille = "x", grille_top = FALSE)
         panel.ontop = grille_top,
         panel.border = ggplot2::element_rect(colour = "black", fill = NA),
         legend.position = "right",
-        legend.margin = ggplot2::margin(0,0,0,0),
+        legend.margin = ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2)
       )
-  } else if (grille == "hv"){
+  } else if (grille == "hv") {
     theme = ggplot2::theme_bw(base_family = "Inter", base_line_size = 0.25) +
       theme(
         plot.title = ggplot2::element_text(face = "bold", size = 14, color = couleur, hjust = 0.5, vjust = 1, margin = ggplot2::margin(t = 5, r = 10, b = 10, l = 10)),
@@ -221,10 +221,10 @@ theme_defaut = function(couleur = "#018849", grille = "x", grille_top = FALSE)
         panel.ontop = grille_top,
         panel.border = ggplot2::element_rect(colour = "black", fill = NA),
         legend.position = "right",
-        legend.margin=ggplot2::margin(0,0,0,0),
+        legend.margin=ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2)
       )
-  } else if (grille == "x"){
+  } else if (grille == "x") {
     theme = ggplot2::theme_bw(base_family = "Inter", base_line_size = 0.25) +
       theme(
         plot.title = ggplot2::element_text(face = "bold", size = 14, color = couleur, hjust = 0.5, vjust = 1, margin = ggplot2::margin(t = 5, r = 10, b = 10, l = 10)),
@@ -236,7 +236,7 @@ theme_defaut = function(couleur = "#018849", grille = "x", grille_top = FALSE)
         legend.title = ggplot2::element_text(face = "bold", size = 12, color = couleur, hjust = 0.5),
         legend.text = ggplot2::element_text(face = "plain", size = 8, color = "black", lineheight = 0.75),
         legend.position = "right",
-        legend.margin=ggplot2::margin(0,0,0,0),
+        legend.margin=ggplot2::margin(0, 0, 0, 0),
         legend.box.margin = ggplot2::margin(t = 0, r = 5, b = 0, l = -2),
         panel.grid = ggplot2::element_blank(),
         panel.background = ggplot2::element_rect(fill = NA),
@@ -248,12 +248,12 @@ theme_defaut = function(couleur = "#018849", grille = "x", grille_top = FALSE)
 
 #### MARGE D'ERREUR ####
 
-#' MargeErreur
+#' marge_erreur
 #'
 #' @return Retourne la marge d'erreur en nombre à virgule.
 #' @description Fonction interactive qui permet de calculer la marge d'erreur d'un échantillon à partir du Z, du n et du p.
 #' @export
-MargeErreur = function()
+marge_erreur = function()
 {
   # Cette fonction sert à calculer la marge d'erreur d'un échantillon.
   cat("\n")
@@ -264,19 +264,19 @@ MargeErreur = function()
   n = as.numeric(readline(prompt = "Entrez la taille de l'échantillon en valeur absolue : \n"))
   me=round(((sqrt(pr*(1-pr)/n))*Z),4)
   cat("\n")
-  print(c("Taille de l'échantillon :", n),quote=F)
-  print(c("Niveau de confiance :", Z),quote=F)
-  print(c("Proportion :", pr),quote=F)
-  print(c("Marge d'erreur :", me),quote=F)
-  print(c("Intervalle de confiance (borne inférieure) :", pr-me),quote=F)
-  print(c("Intervalle de confiance (borne supérieure) :", pr+me),quote=F)
+  print(c("Taille de l'échantillon :", n), quote = FALSE)
+  print(c("Niveau de confiance :", Z), quote = FALSE)
+  print(c("Proportion :", pr), quote = FALSE)
+  print(c("Marge d'erreur :", me), quote = FALSE)
+  print(c("Intervalle de confiance (borne inférieure) :", pr - me), quote = FALSE)
+  print(c("Intervalle de confiance (borne supérieure) :", pr + me), quote = FALSE)
   cat("\n")
   return(me)
 }
 
 #### IMPORTATION D'UNE BASE DE DONNÉES ####
 
-#' Importer
+#' importer
 #'
 #' @param indicateurs Paramètre qui sert uniquement à l'importation de données provenant de la Banque Mondiale (package WDI). S'insère sous forme de vecteur de charactères.
 #' @param colonnes A la valeur TRUE par défaut afin de nommer les colonnes de la base à partir de la première rangée de la source (changer pour colonnes = FALSE si la première rangée ne contient pas les noms des colonnes).
@@ -284,7 +284,7 @@ MargeErreur = function()
 #' @return Retourne un dataframe transformé en "tibble" pour en faciliter les manipulations.
 #' @description Fonction interactive qui permet d'importer une base de données à partir d'un fichier, d'un URL ou de la fonction WDI() du package éponyme.
 #' @export
-Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
+importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
 {
   cat("\n")
   format = as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = .dta \n 6 = Package WDI \n"))
@@ -360,12 +360,12 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
     }
     cat("\n")
     base = haven::read_dta(fichier, encoding = encodage)
-  } else if (format == 6){
+  } else if (format == 6) {
     nbr_pays = as.numeric(readline(prompt = "Entrez le nombre de pays pour lesquels les données seront importées :  \n"))
     cat("\n")
     pays = c()
-    for (i in 1:nbr_pays){
-      pays[i] = as.character(readline(prompt = paste("Entrez le code (ISO 2 lettres) du pays # ",i," :  \n", sep = "")))
+    for (i in 1:nbr_pays) {
+      pays[i] = as.character(readline(prompt = paste("Entrez le code (ISO 2 lettres) du pays # ",i, " :  \n", sep = "")))
       cat("\n")
     }
     start = as.numeric(readline(prompt = "Entrez la date de début : \n"))
@@ -382,7 +382,7 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
 
 #### RENOMMER DES VARIABLES ####
 
-#' Renommer
+#' renommer
 #'
 #' @param base Le nom de l'objet qui représente la base de données.
 #' @param anciens_noms Les noms des variables à renommer, sous la forme c("nom1", "nom2", "nom3").
@@ -390,10 +390,10 @@ Importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
 #' @description Fonction qui utilise rename() mais qui simplifie son utilisation pour l'utilisateur·ice.
 #' @return Retourne le dataframe avec les modifications des noms des variables.
 #' @export
-Renommer = function(base, anciens_noms, nouv_noms)
+renommer = function(base, anciens_noms, nouv_noms)
 {
   cat("\n")
-  for(i in 1:length(anciens_noms)){
+  for(i in seq_along(anciens_noms)) {
     base = dplyr::rename(base, !! nouv_noms[i] := !! anciens_noms[i])
   }
   cat("\n")
@@ -402,18 +402,18 @@ Renommer = function(base, anciens_noms, nouv_noms)
 
 #### ANALYSE UNIVARIÉE QUALITATIVE ####
 
-#' SommaireQuali
+#' univar_quali
 #'
 #' @param variable Variable qualitative (ou catégorielle) sous la forme "base$variable"
 #' @param na.rm A la valeur TRUE par défaut afin de retirer les NA du calcul. Peut être changée pour FALSE afin de considérer les NA.
 #' @description Fonction qui permet d'effectuer l'analyse univariée d'une variable qualitative en une seule étape.
 #' @return Retourne le tableau des fréquences des valeurs possibles que peut prendre la variable analysée.
 #' @export
-SommaireQuali = function(variable, na.rm = TRUE)
+univar_quali = function(variable, na.rm = TRUE)
 {
-  if (na.rm == TRUE){
+  if (na.rm == TRUE) {
     x = variable[!is.na(variable)]
-  } else if (na.rm == FALSE){
+  } else if (na.rm == FALSE) {
     x = variable
   }
   freqq = freq(x)
@@ -425,9 +425,9 @@ SommaireQuali = function(variable, na.rm = TRUE)
   y = as.factor(x)
   freq = summary(y)
   mode = names(freq)[freq[names(freq)] == max(freq)]
-  if (suppressWarnings(!is.na(as.numeric(mode)))){
+  if (suppressWarnings(!is.na(as.numeric(mode)))) {
     mode = as.numeric(mode)
-  } else if (mode=="TRUE"|mode=="FALSE"){
+  } else if (mode == "TRUE" || mode == "FALSE") {
     mode = as.logical(mode)
   }
   print(c("Mode :", mode), quote = FALSE)
@@ -436,21 +436,21 @@ SommaireQuali = function(variable, na.rm = TRUE)
 
 #### ANALYSE UNIVARIÉE QUANTITATIVE ####
 
-#' SommaireQuanti
+#' univar_quanti
 #'
 #' @param variable Variable quantitative continue sous la forme "base$variable"
 #' @param na.rm A la valeur TRUE par défaut afin de retirer les NA du calcul. Peut être changée pour FALSE afin de considérer les NA.
 #' @description Fonction qui permet d'effectuer l'analyse univariée d'une variable quantitative continue en une seule étape.
 #' @return Retourne une liste contenant les mesures de tendance centrale et de dispersion suivantes, dans cet ordre : moyenne, médiane et écart-type.
 #' @export
-SommaireQuanti = function(variable, na.rm = TRUE)
+univar_quanti = function(variable, na.rm = TRUE)
 {
-  if (na.rm == TRUE){
+  if (na.rm == TRUE) {
     moyenne = round(mean(as.numeric(variable),na.rm = TRUE),2)
     mediane = round(stats::median(as.numeric(variable),na.rm = TRUE),2)
     ecart_type = round(stats::sd(as.numeric(variable), na.rm = TRUE),2)
     quantiles = stats::quantile(as.numeric(variable),na.rm = TRUE,names = FALSE)
-  } else if (na.rm == FALSE){
+  } else if (na.rm == FALSE) {
     moyenne = round(mean(as.numeric(variable),na.rm = FALSE),2)
     mediane = round(stats::median(as.numeric(variable),na.rm = FALSE),2)
     ecart_type = round(stats::sd(as.numeric(variable), na.rm = FALSE),2)
@@ -473,21 +473,21 @@ SommaireQuanti = function(variable, na.rm = TRUE)
 
 #### ANALYSE BIVARIÉE QUALI+QUALI ####
 
-#' TableLabels
+#' table_nomsvar
 #'
 #' @param variable_X Variable indépendante sous la forme "base$variable".
 #' @param variable_Y Variable dépendante sous la forme "base$variable".
 #' @description Fonction qui ajoute les noms des deux variables au table() afin de mieux identifier les colonnes et les rangées.
 #' @return Retourne un tableau qui peut être sauvegardé dans un nouvel objet.
 #' @export
-TableLabels = function(variable_X, variable_Y)
+table_nomsvar = function(variable_X, variable_Y)
 {
   X_name_long = as.character(deparse(substitute(variable_X)))
-  X_name = strsplit(X_name_long,"$", fixed=TRUE)
+  X_name = strsplit(X_name_long, "$", fixed = TRUE)
   X_name = as.character(X_name[[1]][2])
 
   Y_name_long = as.character(deparse(substitute(variable_Y)))
-  Y_name = strsplit(Y_name_long,"$", fixed=TRUE)
+  Y_name = strsplit(Y_name_long, "$", fixed = TRUE)
   Y_name = as.character(Y_name[[1]][2])
 
   t1=table(variable_Y,variable_X)
@@ -495,7 +495,7 @@ TableLabels = function(variable_X, variable_Y)
   return(t1)
 }
 
-#' QualiQuali
+#' bivar_quali_quali
 #'
 #' @param variable_X Variable indépendante sous la forme "base$variable".
 #' @param variable_Y Variable dépendante sous la forme "base$variable".
@@ -504,72 +504,72 @@ TableLabels = function(variable_X, variable_Y)
 #' @description Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre deux variables qualitatives.
 #' @return Retourne une liste contenant les mesures de significativité et de taille de l'effet suivantes, dans cet ordre : p-value et V de Cramer.
 #' @export
-QualiQuali = function(variable_X, variable_Y, V_corrected = TRUE, na.rm = TRUE)
+bivar_quali_quali = function(variable_X, variable_Y, V_corrected = TRUE, na.rm = TRUE)
 {
   # V_corrected = FALSE --> utilise une version non ajustée du V de Cramer (la version classique)
   X_name_long = as.character(deparse(substitute(variable_X)))
-  X_name = strsplit(X_name_long,"$", fixed=TRUE)
+  X_name = strsplit(X_name_long, "$", fixed = TRUE)
   X_name = as.character(X_name[[1]][2])
 
   Y_name_long = as.character(deparse(substitute(variable_Y)))
-  Y_name = strsplit(Y_name_long,"$", fixed=TRUE)
+  Y_name = strsplit(Y_name_long, "$", fixed = TRUE)
   Y_name = as.character(Y_name[[1]][2])
 
   base_name_long = as.character(deparse(substitute(variable_X)))
-  base_name = strsplit(base_name_long,"$", fixed=TRUE)
+  base_name = strsplit(base_name_long, "$", fixed = TRUE)
   base = get(as.name(base_name[[1]][1]))
 
-  if (na.rm == TRUE){
+  if (na.rm == TRUE) {
     x = variable_X[!is.na(variable_X) & !is.na(variable_Y)]
     y = variable_Y[!is.na(variable_X) & !is.na(variable_Y)]
-  } else if (na.rm == FALSE){
+  } else if (na.rm == FALSE) {
     x = variable_X
     y = variable_Y
   }
 
-  t1 = TableLabels(x, y)
+  t1 = table_nomsvar(x, y)
 
   cat("\n")
   cat("Tableau de contingence (% de colonnes) : ")
   cat("\n")
-  gmodels::CrossTable(y, x, prop.r = FALSE, prop.t=FALSE, prop.chisq=FALSE, format = "SPSS", dnn = c(Y_name, X_name))
+  gmodels::CrossTable(y, x, prop.r = FALSE, prop.t = FALSE, prop.chisq = FALSE, format = "SPSS", dnn = c(Y_name, X_name))
   cat("\n")
 
   chisq = stats::chisq.test(t1)
   p = as.numeric(chisq$p.value)
-  if (V_corrected == FALSE){
+  if (V_corrected == FALSE) {
     V = round(DescTools::CramerV(t1, correct = FALSE), 4)
-  } else if (V_corrected == TRUE){
+  } else if (V_corrected == TRUE) {
     V = round(DescTools::CramerV(t1, correct = TRUE), 4)
   }
 
-  print(paste("Valeur du p :", p),quote=FALSE)
+  print(paste("Valeur du p :", p), quote = FALSE)
   cat("\n")
-  if (p < 0.05){
-    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote=FALSE)
+  if (p < 0.05) {
+    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote = FALSE)
     cat("\n")
-    print(paste("V de Cramer :", V), quote=FALSE)
+    print(paste("V de Cramer :", V), quote = FALSE)
     cat("\n")
-    if (V < 0.1){
-      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le V de Cramer inférieur à 0.1."), quote=FALSE)
-    } else if (V >= 0.1 & V < 0.3){
-      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le V de Cramer se situe entre 0.1 et 0.3."), quote=FALSE)
+    if (V < 0.1) {
+      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le V de Cramer inférieur à 0.1."), quote = FALSE)
+    } else if (V >= 0.1 && V < 0.3) {
+      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le V de Cramer se situe entre 0.1 et 0.3."), quote = FALSE)
     }
-    else if (V >= 0.3 & V < 0.5){
-      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le V de Cramer se situe entre 0.3 et 0.5."), quote=FALSE)
+    else if (V >= 0.3 && V < 0.5) {
+      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le V de Cramer se situe entre 0.3 et 0.5."), quote = FALSE)
     }
-    else if (V >= 0.5){
-      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le V de Cramer est supérieur à 0.5."), quote=FALSE)
+    else if (V >= 0.5) {
+      print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le V de Cramer est supérieur à 0.5."), quote = FALSE)
     }
-  } else if (p >= 0.05){
-    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote=FALSE)
+  } else if (p >= 0.05) {
+    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
   }
   return(list("p_value" = p, "V_Cramer" = V))
 }
 
 #### ANALYSE BIVARIÉE QUALI+QUANTI ####
 
-#' QualiQuanti
+#' bivar_quali_quanti
 #'
 #' @param variable_X Variable indépendante sous la forme "base$variable".
 #' @param variable_Y Variable dépendante sous la forme "base$variable".
@@ -578,24 +578,24 @@ QualiQuali = function(variable_X, variable_Y, V_corrected = TRUE, na.rm = TRUE)
 #' @description Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre une variable qualitative et une variable quantitative. Elle détecte automatiquement si la variable qualitative est dichotomique ou polytomique.
 #' @return Retourne une liste contenant nécessairement le p-value pour mesurer la significativité, puis la mesure de taille de l'effet correspondant au type de croisement : D de Cohen si VI dichotomique et tau de Kendall si VI polytomique ordinale.
 #' @export
-QualiQuanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
+bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
 {
   X_name_long = as.character(deparse(substitute(variable_X)))
-  X_name = strsplit(X_name_long,"$", fixed=TRUE)
+  X_name = strsplit(X_name_long, "$", fixed = TRUE)
   X_name = as.character(X_name[[1]][2])
 
   Y_name_long = as.character(deparse(substitute(variable_Y)))
-  Y_name = strsplit(Y_name_long,"$", fixed=TRUE)
+  Y_name = strsplit(Y_name_long, "$", fixed = TRUE)
   Y_name = as.character(Y_name[[1]][2])
 
   base_name_long = as.character(deparse(substitute(variable_X)))
-  base_name = strsplit(base_name_long,"$", fixed=TRUE)
+  base_name = strsplit(base_name_long, "$", fixed = TRUE)
   base = get(as.name(base_name[[1]][1]))
 
-  if (na.rm == TRUE){
+  if (na.rm == TRUE) {
     x = variable_X[!is.na(variable_X) & !is.na(variable_Y)]
     y = variable_Y[!is.na(variable_X) & !is.na(variable_Y)]
-  } else if (na.rm == FALSE){
+  } else if (na.rm == FALSE) {
     x = variable_X
     y = variable_Y
   }
@@ -608,78 +608,78 @@ QualiQuanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
   print(t(t1))
   cat("\n")
 
-  if (length(unique(x)) == 2){
+  if (length(unique(x)) == 2) {
     t.test = t.test(y ~ x)
     p = t.test$p.value
     D = round(lsr::cohensD(y ~ x), 4)
 
-    print(paste("Valeur du p :", p),quote=FALSE)
+    print(paste("Valeur du p :", p), quote = FALSE)
     cat("\n")
-    if (p < 0.05){
-      print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote=FALSE)
+    if (p < 0.05) {
+      print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote = FALSE)
       cat("\n")
-      print(paste("D de Cohen :", D), quote=FALSE)
+      print(paste("D de Cohen :", D), quote = FALSE)
       cat("\n")
-      if (D < 0.2){
-        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le D de Cohen inférieur à 0.2."), quote=FALSE)
-      } else if (D >= 0.2 & D < 0.5){
-        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le D de Cohen se situe entre 0.2 et 0.5."), quote=FALSE)
+      if (D < 0.2) {
+        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le D de Cohen inférieur à 0.2."), quote = FALSE)
+      } else if (D >= 0.2 && D < 0.5) {
+        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le D de Cohen se situe entre 0.2 et 0.5."), quote = FALSE)
       }
-      else if (D >= 0.5 & D < 0.8){
-        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le D de Cohen se situe entre 0.5 et 0.8."), quote=FALSE)
+      else if (D >= 0.5 && D < 0.8) {
+        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le D de Cohen se situe entre 0.5 et 0.8."), quote = FALSE)
       }
-      else if (D >= 0.8){
-        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le D de Cohen est supérieur à 0.8."), quote=FALSE)
+      else if (D >= 0.8) {
+        print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le D de Cohen est supérieur à 0.8."), quote = FALSE)
       }
-    } else if (p >= 0.05){
-      print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote=FALSE)
+    } else if (p >= 0.05) {
+      print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
     }
     return(list("p_value" = p, "D_Cohen" = D))
 
-  } else if (length(unique(x)) > 2){
-    if (Y_ord == TRUE){
+  } else if (length(unique(x)) > 2) {
+    if (Y_ord == TRUE) {
       stats = stats::cor.test(x, y, method = "kendall")
       p = stats$p.value
       tau = round(stats$estimate, 4)
 
-      print(paste("Valeur du p :", p),quote=FALSE)
+      print(paste("Valeur du p :", p), quote = FALSE)
       cat("\n")
-      if (p < 0.05){
-        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote=FALSE)
+      if (p < 0.05) {
+        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote = FALSE)
         cat("\n")
-        print(paste("tau de Kendall :", tau), quote=FALSE)
+        print(paste("tau de Kendall :", tau), quote = FALSE)
         cat("\n")
-        if (tau >= 0){
-          if (tau < 0.1){
-            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est inférieur à 0.1."), quote=FALSE)
-          } else if (tau >= 0.1 & tau < 0.3){
-            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le tau de Kendall se situe entre 0.1 et 0.3."), quote=FALSE)
+        if (tau >= 0) {
+          if (tau < 0.1) {
+            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est inférieur à 0.1."), quote = FALSE)
+          } else if (tau >= 0.1 && tau < 0.3) {
+            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le tau de Kendall se situe entre 0.1 et 0.3."), quote = FALSE)
           }
-          else if (tau >= 0.3 & tau < 0.5){
-            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le tau de Kendall se situe entre 0.3 et 0.5."), quote=FALSE)
+          else if (tau >= 0.3 && tau < 0.5) {
+            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le tau de Kendall se situe entre 0.3 et 0.5."), quote = FALSE)
           }
-          else if (tau >= 0.5){
-            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le tau de Kendall est supérieur à 0.5."), quote=FALSE)
+          else if (tau >= 0.5) {
+            print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le tau de Kendall est supérieur à 0.5."), quote = FALSE)
           }
-        } else if (tau < 0){
-          if (tau > -0.1){
-            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est supérieur à -0.1."), quote=FALSE)
-          } else if (tau <= -0.1 & tau > -0.3){
-            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le tau de Kendall se situe entre -0.1 et -0.3."), quote=FALSE)
+        } else if (tau < 0) {
+          if (tau > -0.1) {
+            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est supérieur à -0.1."), quote = FALSE)
+          } else if (tau <= -0.1 && tau > -0.3) {
+            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le tau de Kendall se situe entre -0.1 et -0.3."), quote = FALSE)
           }
-          else if (tau <= -0.3 & tau > -0.5){
-            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le tau de Kendall se situe entre -0.3 et -0.5."), quote=FALSE)
+          else if (tau <= -0.3 && tau > -0.5) {
+            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le tau de Kendall se situe entre -0.3 et -0.5."), quote = FALSE)
           }
-          else if (tau <= -0.5){
-            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le tau de Kendall est inférieur à -0.5."), quote=FALSE)
+          else if (tau <= -0.5) {
+            print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le tau de Kendall est inférieur à -0.5."), quote = FALSE)
           }
         }
-      } else if (p >= 0.05){
-        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote=FALSE)
+      } else if (p >= 0.05) {
+        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
       }
       return(list("p_value" = p, "tau_Kendall" = tau))
 
-    } else if (Y_ord == FALSE){
+    } else if (Y_ord == FALSE) {
       x = as.factor(x)
       anova = stats::aov(y ~ x)
       anova.res = summary(anova) # to print
@@ -691,18 +691,18 @@ QualiQuanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
       print(anova.res)
       cat("\n")
       cat("\n")
-      print(paste("Valeur du p :", p),quote=FALSE)
+      print(paste("Valeur du p :", p), quote = FALSE)
       cat("\n")
-      if (p < 0.05){
-        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif. L'ANOVA détecte au minimum une différence significative entre les moyennes des groupes."), quote=FALSE)
+      if (p < 0.05) {
+        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif. L'ANOVA détecte au minimum une différence significative entre les moyennes des groupes."), quote = FALSE)
         cat("\n")
         cat("\n")
         cat("\n")
         test = summary(multcomp::glht(anova, linfct = multcomp::mcp(x = "Tukey")))
         print(test)
         cat("\n")
-      } else if (p >= 0.05){
-        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote=FALSE)
+      } else if (p >= 0.05) {
+        print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote = FALSE)
       }
       return(list("p_value" = p))
 
@@ -713,7 +713,7 @@ QualiQuanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
 
 #### ANALYSE BIVARIÉE QUANTI+QUANTI ####
 
-#' QuantiQuanti
+#' bivar_quanti_quanti
 #'
 #' @param variable_X Variable indépendante sous la forme "base$variable".
 #' @param variable_Y Variable dépendante sous la forme "base$variable".
@@ -721,33 +721,33 @@ QualiQuanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
 #' @description Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre deux variables quantitatives continues. Si une variable quantitative est recodée en catégories, elle devient une variable qualitative.
 #' @return Retourne une liste contenant les mesures de significativité et de taille de l'effet suivantes, dans cet ordre : p-value, r de Pearson (coefficient de corrélation) et R2 (coefficient de détermination).
 #' @export
-QuantiQuanti = function(variable_X, variable_Y, na.rm = TRUE)
+bivar_quanti_quanti = function(variable_X, variable_Y, na.rm = TRUE)
 {
   X_name_long = as.character(deparse(substitute(variable_X)))
-  X_name = strsplit(X_name_long,"$", fixed=TRUE)
+  X_name = strsplit(X_name_long, "$", fixed = TRUE)
   X_name = as.character(X_name[[1]][2])
 
   Y_name_long = as.character(deparse(substitute(variable_Y)))
-  Y_name = strsplit(Y_name_long,"$", fixed=TRUE)
+  Y_name = strsplit(Y_name_long, "$", fixed = TRUE)
   Y_name = as.character(Y_name[[1]][2])
 
   base_name_long = as.character(deparse(substitute(variable_X)))
-  base_name = strsplit(base_name_long,"$", fixed=TRUE)
+  base_name = strsplit(base_name_long, "$", fixed = TRUE)
   base = get(as.name(base_name[[1]][1]))
 
-  if (na.rm == TRUE){
+  if (na.rm == TRUE) {
     x = variable_X[!is.na(variable_X) & !is.na(variable_Y)]
     y = variable_Y[!is.na(variable_X) & !is.na(variable_Y)]
-  } else if (na.rm == FALSE){
+  } else if (na.rm == FALSE) {
     x = variable_X
     y = variable_Y
   }
 
   modele = stats::lm(y ~ x)
   coeff = stats::coefficients(modele)
-  if (round(coeff[1],1) >= 0){
+  if (round(coeff[1],1) >= 0) {
     eq = as.character(paste0("y = ", round(coeff[2],1), "*x + ", round(coeff[1],1)))
-  } else if (round(coeff[1],1) < 0){
+  } else if (round(coeff[1],1) < 0) {
     eq = as.character(paste0("y = ", round(coeff[2],1), "*x ", round(coeff[1],1)))
   }
   {plot(x, y,
@@ -755,7 +755,8 @@ QuantiQuanti = function(variable_X, variable_Y, na.rm = TRUE)
         sub = eq,
         xlab = X_name,
         ylab = Y_name)
-    graphics::abline(modele, col = "blue")}
+    graphics::abline(modele, col = "blue")
+  }
   cat("\n")
   cat("Modèle de régression linéaire simple : \n")
   cat("\n")
@@ -767,41 +768,41 @@ QuantiQuanti = function(variable_X, variable_Y, na.rm = TRUE)
   r = round(as.numeric(cor$estimate), 4)
   r2 = round((r^2)*100, 4)
 
-  print(paste("Valeur du p :", p),quote=FALSE)
+  print(paste("Valeur du p :", p), quote = FALSE)
   cat("\n")
-  if (p < 0.05){
-    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote=FALSE)
+  if (p < 0.05) {
+    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» est statistiquement significatif."), quote = FALSE)
     cat("\n")
-    print(paste("r de Pearson (coefficient de corrélation) :", r), quote=FALSE)
-    print(paste("R2 (coefficient de détermination en %) :", r2), quote=FALSE)
+    print(paste("r de Pearson (coefficient de corrélation) :", r), quote = FALSE)
+    print(paste("R2 (coefficient de détermination en %) :", r2), quote = FALSE)
     cat("\n")
-    if (r >= 0){
-      if (r < 0.1){
-        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est inférieur à 0.1."), quote=FALSE)
-      } else if (r >= 0.1 & r < 0.3){
-        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le r de Pearson se situe entre 0.1 et 0.3."), quote=FALSE)
+    if (r >= 0) {
+      if (r < 0.1) {
+        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est inférieur à 0.1."), quote = FALSE)
+      } else if (r >= 0.1 && r < 0.3) {
+        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le r de Pearson se situe entre 0.1 et 0.3."), quote = FALSE)
       }
-      else if (r >= 0.3 & r < 0.5){
-        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le r de Pearson se situe entre 0.3 et 0.5."), quote=FALSE)
+      else if (r >= 0.3 && r < 0.5) {
+        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le r de Pearson se situe entre 0.3 et 0.5."), quote = FALSE)
       }
-      else if (r >= 0.5){
-        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le r de Pearson est supérieur à 0.5."), quote=FALSE)
+      else if (r >= 0.5) {
+        print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le r de Pearson est supérieur à 0.5."), quote = FALSE)
       }
-    } else if (r < 0){
-      if (r > -0.1){
-        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est supérieur à -0.1."), quote=FALSE)
-      } else if (r <= -0.1 & r > -0.3){
-        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le r de Pearson se situe entre -0.1 et -0.3."), quote=FALSE)
+    } else if (r < 0) {
+      if (r > -0.1) {
+        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est supérieur à -0.1."), quote = FALSE)
+      } else if (r <= -0.1 && r > -0.3) {
+        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le r de Pearson se situe entre -0.1 et -0.3."), quote = FALSE)
       }
-      else if (r <= -0.3 & r > -0.5){
-        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le r de Pearson se situe entre -0.3 et -0.5."), quote=FALSE)
+      else if (r <= -0.3 && r > -0.5) {
+        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le r de Pearson se situe entre -0.3 et -0.5."), quote = FALSE)
       }
-      else if (r <= -0.5){
-        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le r de Pearson est inférieur à -0.5."), quote=FALSE)
+      else if (r <= -0.5) {
+        print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le r de Pearson est inférieur à -0.5."), quote = FALSE)
       }
     }
-  } else if (p >= 0.05){
-    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote=FALSE)
+  } else if (p >= 0.05) {
+    print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote = FALSE)
   }
   return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
