@@ -294,7 +294,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
-        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+        fichier = file.choose()
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
@@ -309,7 +309,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
-        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+        fichier = file.choose()
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
@@ -323,7 +323,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
-        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+        fichier = file.choose()
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
@@ -337,7 +337,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
-        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+        fichier = file.choose()
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
@@ -351,7 +351,7 @@ importer = function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage =
       type = as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
       cat("\n")
       if (type == 1) {
-        fichier = tcltk::tk_choose.files(caption = "Choisir le fichier de la base de données")
+        fichier = file.choose()
       } else if (type == 2) {
         fichier = as.character(readline(prompt = 'Copiez-collez le lien URL de la base de données sans guillemets ici :  \n'))
       }
