@@ -4,7 +4,7 @@
 \alias{theme_pie}
 \title{theme_pie}
 \usage{
-theme_pie(couleur = "#018849")
+theme_pie(couleur = "#018849", legende = TRUE)
 }
 \arguments{
 \item{couleur}{Le vert de l'Université de Sherbrooke est la couleur par défaut, mais elle peut être changée manuelle pour toute autre couleur.}
