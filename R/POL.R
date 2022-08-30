@@ -431,7 +431,8 @@ univar_quali = function(variable, na.rm = TRUE)
     mode = as.logical(mode)
   }
   print(c("Mode :", mode), quote = FALSE)
-  return(freqq)
+  cat("\n")
+  # return(freqq)
 }
 
 #### ANALYSE UNIVARIÉE QUANTITATIVE ####
@@ -466,7 +467,8 @@ univar_quanti = function(variable, na.rm = TRUE)
   print(c("Mediane (50%) :",mediane), quote = FALSE)
   print(c("Dernier quartile (75%) :",quantiles[4]), quote = FALSE)
   print(c("Maximum (100%) :",quantiles[5]), quote = FALSE)
-  return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
+  cat("\n")
+  # return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
 }
 
 # AJOUTER NUAGE DE POINTS ?
@@ -552,19 +554,24 @@ bivar_quali_quali = function(variable_X, variable_Y, V_corrected = TRUE, na.rm =
     cat("\n")
     if (V < 0.1) {
       print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le V de Cramer inférieur à 0.1."), quote = FALSE)
+      cat("\n")
     } else if (V >= 0.1 && V < 0.3) {
       print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le V de Cramer se situe entre 0.1 et 0.3."), quote = FALSE)
+      cat("\n")
     }
     else if (V >= 0.3 && V < 0.5) {
       print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le V de Cramer se situe entre 0.3 et 0.5."), quote = FALSE)
+      cat("\n")
     }
     else if (V >= 0.5) {
       print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le V de Cramer est supérieur à 0.5."), quote = FALSE)
+      cat("\n")
     }
   } else if (p >= 0.05) {
     print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
+    cat("\n")
   }
-  return(list("p_value" = p, "V_Cramer" = V))
+  # return(list("p_value" = p, "V_Cramer" = V))
 }
 
 #### ANALYSE BIVARIÉE QUALI+QUANTI ####
@@ -622,20 +629,24 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
       cat("\n")
       if (D < 0.2) {
         print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le D de Cohen inférieur à 0.2."), quote = FALSE)
+        cat("\n")
       } else if (D >= 0.2 && D < 0.5) {
         print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le D de Cohen se situe entre 0.2 et 0.5."), quote = FALSE)
+        cat("\n")
       }
       else if (D >= 0.5 && D < 0.8) {
         print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le D de Cohen se situe entre 0.5 et 0.8."), quote = FALSE)
+        cat("\n")
       }
       else if (D >= 0.8) {
         print(paste("La force de la relation entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le D de Cohen est supérieur à 0.8."), quote = FALSE)
+        cat("\n")
       }
     } else if (p >= 0.05) {
       print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
+      cat("\n")
     }
-    return(list("p_value" = p, "D_Cohen" = D))
-
+    # return(list("p_value" = p, "D_Cohen" = D))
   } else if (length(unique(x)) > 2) {
     if (Y_ord == TRUE) {
       stats = stats::cor.test(x, y, method = "kendall")
@@ -652,33 +663,41 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
         if (tau >= 0) {
           if (tau < 0.1) {
             print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est inférieur à 0.1."), quote = FALSE)
+            cat("\n")
           } else if (tau >= 0.1 && tau < 0.3) {
             print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le tau de Kendall se situe entre 0.1 et 0.3."), quote = FALSE)
+            cat("\n")
           }
           else if (tau >= 0.3 && tau < 0.5) {
             print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le tau de Kendall se situe entre 0.3 et 0.5."), quote = FALSE)
+            cat("\n")
           }
           else if (tau >= 0.5) {
             print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le tau de Kendall est supérieur à 0.5."), quote = FALSE)
+            cat("\n")
           }
         } else if (tau < 0) {
           if (tau > -0.1) {
             print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le tau de Kendall est supérieur à -0.1."), quote = FALSE)
+            cat("\n")
           } else if (tau <= -0.1 && tau > -0.3) {
             print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le tau de Kendall se situe entre -0.1 et -0.3."), quote = FALSE)
+            cat("\n")
           }
           else if (tau <= -0.3 && tau > -0.5) {
             print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le tau de Kendall se situe entre -0.3 et -0.5."), quote = FALSE)
+            cat("\n")
           }
           else if (tau <= -0.5) {
             print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le tau de Kendall est inférieur à -0.5."), quote = FALSE)
+            cat("\n")
           }
         }
       } else if (p >= 0.05) {
         print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
+        cat("\n")
       }
-      return(list("p_value" = p, "tau_Kendall" = tau))
-
+      # return(list("p_value" = p, "tau_Kendall" = tau))
     } else if (Y_ord == FALSE) {
       x = as.factor(x)
       anova = stats::aov(y ~ x)
@@ -703,13 +722,12 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
         cat("\n")
       } else if (p >= 0.05) {
         print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote = FALSE)
+        cat("\n")
       }
-      return(list("p_value" = p))
-
+      # return(list("p_value" = p))
     }
   }
 }
-
 
 #### ANALYSE BIVARIÉE QUANTI+QUANTI ####
 
@@ -779,32 +797,41 @@ bivar_quanti_quanti = function(variable_X, variable_Y, na.rm = TRUE)
     if (r >= 0) {
       if (r < 0.1) {
         print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est inférieur à 0.1."), quote = FALSE)
+        cat("\n")
       } else if (r >= 0.1 && r < 0.3) {
         print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et petite puisque le r de Pearson se situe entre 0.1 et 0.3."), quote = FALSE)
+        cat("\n")
       }
       else if (r >= 0.3 && r < 0.5) {
         print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et moyenne puisque le r de Pearson se situe entre 0.3 et 0.5."), quote = FALSE)
+        cat("\n")
       }
       else if (r >= 0.5) {
         print(paste("La force de la relation proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est et grande puisque le r de Pearson est supérieur à 0.5."), quote = FALSE)
+        cat("\n")
       }
     } else if (r < 0) {
       if (r > -0.1) {
         print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est triviale puisque le r de Pearson est supérieur à -0.1."), quote = FALSE)
+        cat("\n")
       } else if (r <= -0.1 && r > -0.3) {
         print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est petite puisque le r de Pearson se situe entre -0.1 et -0.3."), quote = FALSE)
+        cat("\n")
       }
       else if (r <= -0.3 && r > -0.5) {
         print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est moyenne puisque le r de Pearson se situe entre -0.3 et -0.5."), quote = FALSE)
+        cat("\n")
       }
       else if (r <= -0.5) {
         print(paste("La force de la relation inversement proportionnelle entre la variable «", X_name, "» et la variable «", Y_name, "» est grande puisque le r de Pearson est inférieur à -0.5."), quote = FALSE)
+        cat("\n")
       }
     }
   } else if (p >= 0.05) {
     print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote = FALSE)
+    cat("\n")
   }
-  return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
+  # return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
 
 #### ANALYSE MULTIVARIÉE REGRESSION LINEAIRE ####
