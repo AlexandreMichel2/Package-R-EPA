@@ -431,7 +431,7 @@ univar_quali = function(variable, na.rm = TRUE)
     mode = as.logical(mode)
   }
   print(c("Mode :", mode), quote = FALSE)
-  return(freqq)
+  # return(freqq)
 }
 
 #### ANALYSE UNIVARIÉE QUANTITATIVE ####
@@ -466,7 +466,7 @@ univar_quanti = function(variable, na.rm = TRUE)
   print(c("Mediane (50%) :",mediane), quote = FALSE)
   print(c("Dernier quartile (75%) :",quantiles[4]), quote = FALSE)
   print(c("Maximum (100%) :",quantiles[5]), quote = FALSE)
-  return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
+  # return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
 }
 
 # AJOUTER NUAGE DE POINTS ?
@@ -564,7 +564,7 @@ bivar_quali_quali = function(variable_X, variable_Y, V_corrected = TRUE, na.rm =
   } else if (p >= 0.05) {
     print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
   }
-  return(list("p_value" = p, "V_Cramer" = V))
+  # return(list("p_value" = p, "V_Cramer" = V))
 }
 
 #### ANALYSE BIVARIÉE QUALI+QUANTI ####
@@ -634,8 +634,7 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
     } else if (p >= 0.05) {
       print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
     }
-    return(list("p_value" = p, "D_Cohen" = D))
-
+    # return(list("p_value" = p, "D_Cohen" = D))
   } else if (length(unique(x)) > 2) {
     if (Y_ord == TRUE) {
       stats = stats::cor.test(x, y, method = "kendall")
@@ -677,8 +676,7 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
       } else if (p >= 0.05) {
         print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
       }
-      return(list("p_value" = p, "tau_Kendall" = tau))
-
+      # return(list("p_value" = p, "tau_Kendall" = tau))
     } else if (Y_ord == FALSE) {
       x = as.factor(x)
       anova = stats::aov(y ~ x)
@@ -704,12 +702,10 @@ bivar_quali_quanti = function(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRU
       } else if (p >= 0.05) {
         print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote = FALSE)
       }
-      return(list("p_value" = p))
-
+      # return(list("p_value" = p))
     }
   }
 }
-
 
 #### ANALYSE BIVARIÉE QUANTI+QUANTI ####
 
@@ -804,7 +800,7 @@ bivar_quanti_quanti = function(variable_X, variable_Y, na.rm = TRUE)
   } else if (p >= 0.05) {
     print(paste("Le croisement entre la variable «", X_name, "» et la variable «", Y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote = FALSE)
   }
-  return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
+  # return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
 
 #### ANALYSE MULTIVARIÉE REGRESSION LINEAIRE ####
