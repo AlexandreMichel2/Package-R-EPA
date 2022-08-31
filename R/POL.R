@@ -340,7 +340,7 @@ importer <- function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage 
       fichier <- as.character(data)
     }
     cat("\n")
-    base <- Hmisc::spss.get(fichier, use.value.labels = colonnes, encoding = encodage)
+    base <- haven::read_spss(fichier)
   } else if (format == 5) {
     if (is.null(data)) {
       type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
@@ -748,11 +748,12 @@ bivar_quanti_quanti <- function(variable_x, variable_y, na.rm = TRUE) {
   } else if (round(coeff[1], 1) < 0) {
     eq <- as.character(paste0("y = ", round(coeff[2], 1), "*x ", round(coeff[1], 1)))
   }
-  {plot(x, y,
-    main = paste("croisement entre la variable «", x_name, "» et la variable «", y_name, "»"),
-    sub = eq,
-    xlab = x_name,
-    ylab = y_name
+  {
+    plot(x, y,
+      main = paste("croisement entre la variable «", x_name, "» et la variable «", y_name, "»"),
+      sub = eq,
+      xlab = x_name,
+      ylab = y_name
     )
     graphics::abline(modele, col = "blue")
   }
