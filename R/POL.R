@@ -381,6 +381,7 @@ importer <- function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage 
 #' @param base Objet qui représente la base de données.
 #' @description Cette fonction applique toutes les fonctions de type 'zap()' du package Haven. Ces fonctions servent à retirer les éléments de formatage typiques des bases de données STATA et SPSS et ainsi formater les données à R.
 #' @return La base de donnée reformatée qui peut-être être stockée dans un nouvel objet ou servir à écraser une existante.
+#' @export
 reformater <- function(base) {
   base <- haven::zap_empty(base)
   base <- haven::zap_formats(base)
