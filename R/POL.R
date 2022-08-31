@@ -274,7 +274,7 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
 
 #' importer
 #'
-#' @param indicateurs Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères.
+#' @param indicateurs Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")
 #' @param colonnes A la valeur 'TRUE' par défaut afin de nommer les colonnes de la base à partir de la première rangée de la source (changer pour 'colonnes = FALSE' si la première rangée ne contient pas les noms des colonnes).
 #' @param encodage A la valeur 'UTF-8' par défaut afin de lire les caractères comme les accents. Ne changez PAS la valeur de cet argument si vous ne comprenez pas ce dont il est question.
 #' @return Retourne un dataframe transformé en 'tibble' pour en faciliter les manipulations.
@@ -374,9 +374,24 @@ importer <- function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage 
   return(base)
 }
 
+#### ALL ZAPS AT THE SAME TIME ####
+
+#' reformater
+#'
+#' @param base Objet qui représente la base de données.
+#' @description Cette fonction applique toutes les fonctions de type 'zap()' du package Haven. Ces fonctions servent à retirer les éléments de formatage typiques des bases de données STATA et SPSS et ainsi formater les données à R.
+#' @return La base de donnée reformatée qui peut-être être stockée dans un nouvel objet ou servir à écraser une existante.
+reformater <- function(base) {
+  base <- haven::zap_empty(base)
+  base <- haven::zap_formats(base)
+  base <- haven::zap_label(base)
+  base <- haven::zap_labels(base)
+  base <- haven::zap_missing(base)
+  base <- haven::zap_widths(base)
+  return(base)
+}
 
 #### RENOMMER DES VARIABLES ####
-
 #' renommer
 #'
 #' @param base Objet qui représente la base de données.

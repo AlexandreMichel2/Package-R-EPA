@@ -7,7 +7,7 @@
 importer(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
 }
 \arguments{
-\item{indicateurs}{Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères.}
+\item{indicateurs}{Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")}
 
 \item{colonnes}{A la valeur 'TRUE' par défaut afin de nommer les colonnes de la base à partir de la première rangée de la source (changer pour 'colonnes = FALSE' si la première rangée ne contient pas les noms des colonnes).}
 
