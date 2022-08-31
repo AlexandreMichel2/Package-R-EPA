@@ -4,20 +4,20 @@
 \alias{bivar_quali_quanti}
 \title{bivar_quali_quanti}
 \usage{
-bivar_quali_quanti(variable_X, variable_Y, Y_ord = FALSE, na.rm = TRUE)
+bivar_quali_quanti(variable_x, variable_y, y_ord = FALSE, na.rm = TRUE)
 }
 \arguments{
-\item{variable_X}{Variable indépendante sous la forme "base$variable".}
+\item{variable_x}{Variable indépendante sous la forme 'base$variable'.}
 
-\item{variable_Y}{Variable dépendante sous la forme "base$variable".}
+\item{variable_y}{Variable dépendante sous la forme 'base$variable'.}
 
-\item{Y_ord}{A la valeur FALSE par défaut pour indiquer que la variable qualitative du croisement n'est pas ordinale (sans hiérarchie, nominale). Si la variable qualitative est ordinale (comme le niveau d'éducation), changer la valeur de l'Argument pour TRUE.}
+\item{y_ord}{A la valeur 'FALSE' par défaut pour indiquer que la variable qualitative du croisement est polytomique nominale (donc sans hiérarchie, non-ordinale). Si la variable qualitative est ordinale (comme un niveau de satisfaction), changer la valeur de 'y_ord' pour 'TRUE'.}
 
-\item{na.rm}{A la valeur TRUE par défaut pour ne pas considérer les NA dans l'analyse. Changer cette valeur pour FALSE pourrait causer un message d'erreur. Si c'est le cas, rechanger pour TRUE.}
+\item{na.rm}{A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.}
 }
 \value{
-Retourne une liste contenant nécessairement le p-value pour mesurer la significativité, puis la mesure de taille de l'effet correspondant au type de croisement : D de Cohen si VI dichotomique et tau de Kendall si VI polytomique ordinale.
+Retourne une liste contenant nécessairement le p-value pour mesurer la significativité, puis la mesure de taille de leffet correspondant au type de croisement : D de Cohen si VI dichotomique et tau de Kendall si VI polytomique ordinale.
 }
 \description{
-Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre une variable qualitative et une variable quantitative. Elle détecte automatiquement si la variable qualitative est dichotomique ou polytomique.
+Fonction qui effectue automatiquement une analyse bivariée entre une variable qualitative et une variable quantitative. Elle détecte automatiquement si la variable qualitative est dichotomique ou polytomique, mais on doit indiquer manuellement son type si elle est polytomique (ordinale ou nominale).
 }

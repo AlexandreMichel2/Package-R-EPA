@@ -4,11 +4,11 @@
 \alias{marge_erreur}
 \title{marge_erreur}
 \usage{
-marge_erreur()
+marge_erreur(z = NULL, pr = NULL, n = NULL)
 }
 \value{
-Retourne la marge d'erreur en nombre à virgule.
+Retourne la valeur de la marge et
 }
 \description{
-Fonction interactive qui permet de calculer la marge d'erreur d'un échantillon à partir du Z, du n et du p.
+Fonction interactive qui permet de mesurer la marge derreur dun échantillon à partir du Z, du n et du p. Les valeurs des arguments peuvent être entrées non-interactivement aussi.
 }

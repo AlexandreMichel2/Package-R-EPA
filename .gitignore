@@ -41,3 +41,5 @@ vignettes/*.pdf
 # Fichiers personnels
 Config_tests.R
 system.R
+.vscode
+.lintr

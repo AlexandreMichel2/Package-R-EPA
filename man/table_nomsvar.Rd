@@ -4,16 +4,16 @@
 \alias{table_nomsvar}
 \title{table_nomsvar}
 \usage{
-table_nomsvar(variable_X, variable_Y)
+table_nomsvar(variable_x, variable_y)
 }
 \arguments{
-\item{variable_X}{Variable indépendante sous la forme "base$variable".}
+\item{variable_x}{Variable indépendante sous la forme 'base$variable'.}
 
-\item{variable_Y}{Variable dépendante sous la forme "base$variable".}
+\item{variable_y}{Variable dépendante sous la forme 'base$variable'.}
 }
 \value{
 Retourne un tableau qui peut être sauvegardé dans un nouvel objet.
 }
 \description{
-Fonction qui ajoute les noms des deux variables au table() afin de mieux identifier les colonnes et les rangées.
+Fonction qui ajoute les noms des deux variables au 'table()'' afin de mieux identifier les colonnes et les rangées.
 }

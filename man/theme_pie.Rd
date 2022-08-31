@@ -7,11 +7,11 @@
 theme_pie(couleur = "#018849", legende = TRUE)
 }
 \arguments{
-\item{couleur}{Le vert de l'Université de Sherbrooke est la couleur par défaut, mais elle peut être changée manuelle pour toute autre couleur.}
+\item{couleur}{Le vert 'Université de Sherbrooke' est la couleur par défaut, mais elle peut être changée manuellement pour toute autre couleur.}
 }
 \value{
-Retourne le thème qui s'ajoute (+) à un graphique fait à partir ddu package ggplot2.
+Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
 }
 \description{
-Thème personnalisé qui retire les fioritures dans la présentation d'un graphique en pointes de tarte, ou "pie chart".
+Thème personnalisé qui retire les fioritures dans un graphique en pointes de tarte, ou 'pie chart'.
 }

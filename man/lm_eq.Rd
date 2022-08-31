@@ -7,13 +7,13 @@
 lm_eq(x, y)
 }
 \arguments{
-\item{x}{Variable indépendante (VI) sous la forme "base$variable"}
+\item{x}{Variable indépendante (VI) sous la forme 'base$variable'}
 
-\item{y}{Variable dépendante (VD) sous la forme "base$variable"}
+\item{y}{Variable dépendante (VD) sous la forme 'base$variable'}
 }
 \value{
-Équation de la droite en format "character".
+Équation de la droite en format 'character'.
 }
 \description{
-Sert surtout à imprimer l'équation de la droite de régression sur un graphique.
+Sert à imprimer une équation de droite de régression sur un graphique.
 }
