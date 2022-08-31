@@ -7,15 +7,15 @@
 theme_defaut(couleur = "#018849", grille = "x", grille_top = FALSE)
 }
 \arguments{
-\item{couleur}{Le vert de l'Université de Sherbrooke est la couleur par défaut, mais elle peut être changée manuelle pour toute autre couleur.}
+\item{couleur}{Le vert 'Université de Sherbrooke' est la couleur par défaut, mais elle peut être changée manuellement pour toute autre couleur.}
 
-\item{grille}{A la valeur "x" par défaut, ce qui signifie aucune grille. La valeur "h" permet une grille horizontale seulement, la valeur "v" une grille verticale et la valeur "hv" pour les deux grilles.}
+\item{grille}{A la valeur 'x' par défaut, ce qui signifie aucune grille. La valeur 'h' permet une grille horizontale seulement, la valeur 'v' une grille verticale et la valeur 'hv' pour les deux grilles.}
 
 \item{grille_top}{A la valeur FALSE par défaut, ce qui signifie que la grille se situe sous les objets du graphique, alors que TRUE appose la grille par-dessus.}
 }
 \value{
-Retourne le thème qui s'ajoute (+) à un graphique fait à partir ddu package ggplot2.
+Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
 }
 \description{
-Thème personnalisé qui est fait pour s'ajuster à une présentation sur une feuille en format lettre.
+Thème personnalisé qui est fait pour s'ajuster à une présentation sur une document en format lettre (8 1/2 x 11).
 }

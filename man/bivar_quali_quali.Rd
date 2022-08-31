@@ -4,20 +4,20 @@
 \alias{bivar_quali_quali}
 \title{bivar_quali_quali}
 \usage{
-bivar_quali_quali(variable_X, variable_Y, V_corrected = TRUE, na.rm = TRUE)
+bivar_quali_quali(variable_x, variable_y, v_corrige = TRUE, na.rm = TRUE)
 }
 \arguments{
-\item{variable_X}{Variable indépendante sous la forme "base$variable".}
+\item{variable_x}{Variable indépendante sous la forme 'base$variable'.}
 
-\item{variable_Y}{Variable dépendante sous la forme "base$variable".}
+\item{variable_y}{Variable dépendante sous la forme 'base$variable'.}
 
-\item{V_corrected}{A la valeur TRUE par défaut pour utiliser une version corrigée et donc plus précise du V de Cramer. À changer pour FALSE afin d'utiliser la version non corrigée.}
+\item{v_corrige}{A la valeur 'TRUE' par défaut pour utiliser une version corrigée et donc plus précise du V de Cramer. À changer pour 'FALSE' pour utiliser la version non corrigée.}
 
-\item{na.rm}{A la valeur TRUE par défaut pour ne pas considérer les NA dans l'analyse. Changer cette valeur pour FALSE pourrait causer un message d'erreur. Si c'est le cas, rechanger pour TRUE.}
+\item{na.rm}{A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.}
 }
 \value{
-Retourne une liste contenant les mesures de significativité et de taille de l'effet suivantes, dans cet ordre : p-value et V de Cramer.
+Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value et V de Cramer.
 }
 \description{
-Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre deux variables qualitatives.
+Fonction qui effectue automatiquement une analyse bivariée entre deux variables qualitatives sélectionnées.
 }

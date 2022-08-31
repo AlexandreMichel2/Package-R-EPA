@@ -4,18 +4,18 @@
 \alias{bivar_quanti_quanti}
 \title{bivar_quanti_quanti}
 \usage{
-bivar_quanti_quanti(variable_X, variable_Y, na.rm = TRUE)
+bivar_quanti_quanti(variable_x, variable_y, na.rm = TRUE)
 }
 \arguments{
-\item{variable_X}{Variable indépendante sous la forme "base$variable".}
+\item{variable_x}{Variable indépendante sous la forme 'base$variable'.}
 
-\item{variable_Y}{Variable dépendante sous la forme "base$variable".}
+\item{variable_y}{Variable dépendante sous la forme 'base$variable'.}
 
-\item{na.rm}{A la valeur TRUE par défaut pour ne pas considérer les NA dans l'analyse. Changer cette valeur pour FALSE pourrait causer un message d'erreur. Si c'est le cas, rechanger pour TRUE.}
+\item{na.rm}{A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA. Changer cette valeur pour 'FALSE' pourrait toutefois causer une erreur. Rechanger pour 'TRUE' si cela se produit.}
 }
 \value{
-Retourne une liste contenant les mesures de significativité et de taille de l'effet suivantes, dans cet ordre : p-value, r de Pearson (coefficient de corrélation) et R2 (coefficient de détermination).
+Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value, r de Pearson (coefficient de corrélation) et R2 (coefficient de détermination).
 }
 \description{
-Fonction qui permet d'effectuer automatiquement l'analyse bivariée entre deux variables quantitatives continues. Si une variable quantitative est recodée en catégories, elle devient une variable qualitative.
+Fonction qui permet d'effectuer automatiquement une analyse bivariée entre deux variables quantitatives continues. Si une variable quantitative est recodée en catégories, elle devient généralement une variable qualitative.
 }

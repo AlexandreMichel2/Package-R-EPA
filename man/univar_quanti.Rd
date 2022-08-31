@@ -7,13 +7,13 @@
 univar_quanti(variable, na.rm = TRUE)
 }
 \arguments{
-\item{variable}{Variable quantitative continue sous la forme "base$variable"}
+\item{variable}{Variable quantitative continue sous la forme 'base$variable'}
 
-\item{na.rm}{A la valeur TRUE par défaut afin de retirer les NA du calcul. Peut être changée pour FALSE afin de considérer les NA.}
+\item{na.rm}{A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.}
 }
 \value{
-Retourne une liste contenant les mesures de tendance centrale et de dispersion suivantes, dans cet ordre : moyenne, médiane et écart-type.
+Retourne une liste contenant les mesures de tendance centrale et de dispersion suivantes, dans cet ordre : 'moyenne, médiane et écart-type'.
 }
 \description{
-Fonction qui permet d'effectuer l'analyse univariée d'une variable quantitative continue en une seule étape.
+Fonction qui permet effectue une analyse univariée sur une variable quantitative continue en une seule étape.
 }
