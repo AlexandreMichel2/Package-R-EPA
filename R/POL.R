@@ -383,7 +383,6 @@ importer <- function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage 
 #' @return La base de donnée reformatée qui peut-être être stockée dans un nouvel objet ou servir à écraser une existante.
 #' @export
 reformater <- function(base) {
-  base <- haven::zap_empty(base)
   base <- haven::zap_formats(base)
   base <- haven::zap_label(base)
   base <- haven::zap_labels(base)
