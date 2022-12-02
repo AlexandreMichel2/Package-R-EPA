@@ -4,12 +4,31 @@
 \alias{importer}
 \title{importer}
 \usage{
-importer(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8")
+importer(
+  data = NULL,
+  format = NULL,
+  colonnes = TRUE,
+  indicateurs = NULL,
+  pays = NULL,
+  start = NULL,
+  end = NULL,
+  encodage = "UTF-8"
+)
 }
 \arguments{
-\item{indicateurs}{Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")}
+\item{data}{Entrer le répertoire (ou path/directory), ou l'URL si les données sont hébergées sur le web, entre guillemets}
+
+\item{format}{Inscrire l'extension du fichier entre guillemets en précisant si le codage est français ou anglais pour un fichier .csv (ex: ".csv_fr", ".csv_en", ".xlsx", ".sav", ".dta") OU inscrire "WDI" si le package éponyme est utilisé.}
 
 \item{colonnes}{A la valeur 'TRUE' par défaut afin de nommer les colonnes de la base à partir de la première rangée de la source (changer pour 'colonnes = FALSE' si la première rangée ne contient pas les noms des colonnes).}
+
+\item{indicateurs}{Paramètre qui sert uniquement à importer des indicateurs provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")}
+
+\item{pays}{Paramètre qui sert uniquement à importer des pays provenant des données de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")}
+
+\item{start}{Insérer l'année de départ désirée pour la série de données sans guillemet (ex: 1967)}
+
+\item{end}{Insérer l'année de fin désirée pour la série de données sans guillemet (ex: 1967)}
 
 \item{encodage}{A la valeur 'UTF-8' par défaut afin de lire les caractères comme les accents. Ne changez PAS la valeur de cet argument si vous ne comprenez pas ce dont il est question.}
 }
