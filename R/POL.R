@@ -285,9 +285,6 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
 #' @description Fonction interactive qui importe une base de données qui est sauvegardée dans un fichier, accessible via un URL, ou sinon via la fonction 'WDI()' du package éponyme.
 #' @export
 importer <- function(data = NULL, format = NULL, colonnes = TRUE, indicateurs = NULL, pays = NULL, start = NULL, end = NULL, encodage = "UTF-8") {
-  cat("\n")
-  format <- as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = .dta \n 6 = Package WDI \n"))
-  cat("\n")
   if (format == ".xlsx") {
     base <- openxlsx::read.xlsx(as.character(data), colNames = colonnes)
   } else if (format == ".csv_en") {
