@@ -18,7 +18,6 @@ requireNamespace("dplyr", quietly = TRUE)
 requireNamespace("ggplot2", quietly = TRUE)
 requireNamespace("forcats", quietly = TRUE)
 requireNamespace("readr", quietly = TRUE)
-requireNamespace("stringr", quietly = TRUE)
 requireNamespace("purrr", quietly = TRUE)
 requireNamespace("tibble", quietly = TRUE)
 requireNamespace("tidyr", quietly = TRUE)
@@ -29,6 +28,8 @@ requireNamespace("ggpmisc", quietly = TRUE)
 requireNamespace("ggrepel", quietly = TRUE)
 requireNamespace("ggcharts", quietly = TRUE)
 requireNamespace("ggforce", quietly = TRUE)
+requireNamespace("ggcorrplot", quietly = TRUE)
+requireNamespace("visreg", quietly = TRUE)
 requireNamespace("openxlsx", quietly = TRUE)
 requireNamespace("scales", quietly = TRUE)
 requireNamespace("lubridate", quietly = TRUE)
@@ -37,6 +38,7 @@ requireNamespace("ragg", quietly = TRUE)
 requireNamespace("cowplot", quietly = TRUE)
 requireNamespace("googleway", quietly = TRUE)
 requireNamespace("ggspatial", quietly = TRUE)
+requireNamespace("ggborderline", quietly = TRUE)
 requireNamespace("sf", quietly = TRUE)
 requireNamespace("rnaturalearth", quietly = TRUE)
 requireNamespace("rnaturalearthdata", quietly = TRUE)
@@ -168,7 +170,7 @@ theme_defaut <- function(couleur = "#018849", grille = "x", grille_top = FALSE) 
         axis.ticks = ggplot2::element_line(colour = "black", linetype = "solid", lineend = "round"),
         legend.title = ggplot2::element_text(face = "bold", size = 12, color = couleur, hjust = 0.5),
         legend.text = ggplot2::element_text(face = "plain", size = 8, color = "black", lineheight = 0.75),
-        panel.grid.major.y = ggplot2::element_line(colour = "black", linetype = 2, lineend = "round"),
+        panel.grid.major.y = ggplot2::element_line(colour = "#8b8b8b", linetype = 2, lineend = "round"),
         panel.grid.major.x = ggplot2::element_blank(),
         panel.grid.minor = ggplot2::element_blank(),
         panel.background = ggplot2::element_rect(fill = NA),
@@ -189,7 +191,7 @@ theme_defaut <- function(couleur = "#018849", grille = "x", grille_top = FALSE) 
         axis.ticks = ggplot2::element_line(colour = "black", linetype = "solid", lineend = "round"),
         legend.title = ggplot2::element_text(face = "bold", size = 12, color = couleur, hjust = 0.5),
         legend.text = ggplot2::element_text(face = "plain", size = 8, color = "black", lineheight = 0.75),
-        panel.grid.major.x = ggplot2::element_line(colour = "black", linetype = 2, lineend = "round"),
+        panel.grid.major.x = ggplot2::element_line(colour = "#8b8b8b", linetype = 2, lineend = "round"),
         panel.grid.major.y = ggplot2::element_blank(),
         panel.grid.minor = ggplot2::element_blank(),
         panel.background = ggplot2::element_rect(fill = NA),
@@ -210,7 +212,7 @@ theme_defaut <- function(couleur = "#018849", grille = "x", grille_top = FALSE) 
         axis.ticks = ggplot2::element_line(color = "black", linetype = "solid", lineend = "round"),
         legend.title = ggplot2::element_text(face = "bold", size = 12, color = couleur, hjust = 0.5),
         legend.text = ggplot2::element_text(face = "plain", size = 8, color = "black", lineheight = 0.75),
-        panel.grid.major = ggplot2::element_line(colour = "black", linetype = 2, lineend = "round"),
+        panel.grid.major = ggplot2::element_line(colour = "#8b8b8b", linetype = 2, lineend = "round"),
         panel.grid.minor = ggplot2::element_blank(),
         panel.background = ggplot2::element_rect(fill = NA),
         panel.ontop = grille_top,
@@ -273,101 +275,30 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
 #### IMPORTATION D'UNE BASE DE DONNÉES ####
 
 #' importer
-#'
-#' @param indicateurs Paramètre qui sert uniquement à importer des données provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")
+#' @param data Entrer le répertoire (ou path/directory), ou l'URL si les données sont hébergées sur le web, entre guillemets
+#' @param format Inscrire l'extension du fichier entre guillemets en précisant si le codage est français ou anglais pour un fichier .csv (ex: ".csv_fr", ".csv_en", ".xlsx", ".sav", ".dta") OU inscrire "WDI" si le package éponyme est utilisé.
 #' @param colonnes A la valeur 'TRUE' par défaut afin de nommer les colonnes de la base à partir de la première rangée de la source (changer pour 'colonnes = FALSE' si la première rangée ne contient pas les noms des colonnes).
+#' @param indicateurs Paramètre qui sert uniquement à importer des indicateurs provenant de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")
+#' @param pays Paramètre qui sert uniquement à importer des pays provenant des données de la Banque Mondiale (package 'WDI'). Est inséré sous forme de vecteur de caractères comme ceci : c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "EN.ATM.GHGT.KT.CE")
+#' @param start Insérer l'année de départ désirée pour la série de données sans guillemet (ex: 1967)
+#' @param end Insérer l'année de fin désirée pour la série de données sans guillemet (ex: 1967)
 #' @param encodage A la valeur 'UTF-8' par défaut afin de lire les caractères comme les accents. Ne changez PAS la valeur de cet argument si vous ne comprenez pas ce dont il est question.
 #' @return Retourne un dataframe transformé en 'tibble' pour en faciliter les manipulations.
 #' @description Fonction interactive qui importe une base de données qui est sauvegardée dans un fichier, accessible via un URL, ou sinon via la fonction 'WDI()' du package éponyme.
 #' @export
-importer <- function(data = NULL, indicateurs = NULL, colonnes = TRUE, encodage = "UTF-8") {
-  cat("\n")
-  format <- as.numeric(readline(prompt = "Choix du format de fichier (inscrire le chiffre correspondant) : \n 1 = .xlsx \n 2 = .csv (anglais ,) \n 3 = .csv (français ;) \n 4 = .sav \n 5 = .dta \n 6 = Package WDI \n"))
-  cat("\n")
-  if (format == 1) {
-    if (is.null(data)) {
-      type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-      cat("\n")
-      if (type == 1) {
-        fichier <- file.choose()
-      } else if (type == 2) {
-        fichier <- as.character(readline(prompt = "Copiez-collez le lien URL de la base de données sans guillemets ici :  \n"))
-      }
-    } else if (!is.null(data)) {
-      fichier <- as.character(data)
-    }
-    cat("\n")
-    feuille <- as.numeric(readline(prompt = "Entrez le numéro de la feuille Excel désirée (1, 2, 3, etc.) :  \n"))
-    base <- openxlsx::read.xlsx(fichier, sheet = feuille, colNames = colonnes)
-  } else if (format == 2) {
-    if (is.null(data)) {
-      type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-      cat("\n")
-      if (type == 1) {
-        fichier <- file.choose()
-      } else if (type == 2) {
-        fichier <- as.character(readline(prompt = "Copiez-collez le lien URL de la base de données sans guillemets ici :  \n"))
-      }
-    } else if (!is.null(data)) {
-      fichier <- as.character(data)
-    }
-    cat("\n")
-    base <- utils::read.csv(fichier, header = colonnes, encoding = encodage)
-  } else if (format == 3) {
-    if (is.null(data)) {
-      type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-      cat("\n")
-      if (type == 1) {
-        fichier <- file.choose()
-      } else if (type == 2) {
-        fichier <- as.character(readline(prompt = "Copiez-collez le lien URL de la base de données sans guillemets ici :  \n"))
-      }
-    } else if (!is.null(data)) {
-      fichier <- as.character(data)
-    }
-    cat("\n")
-    base <- utils::read.csv2(fichier, header = colonnes, encoding = encodage)
-  } else if (format == 4) {
-    if (is.null(data)) {
-      type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-      cat("\n")
-      if (type == 1) {
-        fichier <- file.choose()
-      } else if (type == 2) {
-        fichier <- as.character(readline(prompt = "Copiez-collez le lien URL de la base de données sans guillemets ici :  \n"))
-      }
-    } else if (!is.null(data)) {
-      fichier <- as.character(data)
-    }
-    cat("\n")
-    base <- haven::read_spss(fichier)
-  } else if (format == 5) {
-    if (is.null(data)) {
-      type <- as.numeric(readline(prompt = "Le fichier est-il téléchargé sur l'ordinateur ou hébergé sur un site web (URL)? \n 1 = fichier téléchargé \n 2 = hébergé sur un site web (URL) \n"))
-      cat("\n")
-      if (type == 1) {
-        fichier <- file.choose()
-      } else if (type == 2) {
-        fichier <- as.character(readline(prompt = "Copiez-collez le lien URL de la base de données sans guillemets ici :  \n"))
-      }
-    } else if (!is.null(data)) {
-      fichier <- as.character(data)
-    }
-    cat("\n")
-    base <- haven::read_dta(fichier)
-  } else if (format == 6) {
-    nbr_pays <- as.numeric(readline(prompt = "Entrez le nombre de pays pour lesquels les données seront importées :  \n"))
-    cat("\n")
-    pays <- c()
-    for (i in 1:nbr_pays) {
-      pays[i] <- as.character(readline(prompt = paste("Entrez le code (ISO 2 lettres) du pays # ", i, " :  \n", sep = "")))
-      cat("\n")
-    }
-    start <- as.numeric(readline(prompt = "Entrez la date de début : \n"))
-    end <- as.numeric(readline(prompt = "Entrez la date de fin : \n"))
-    cat("\n")
+importer <- function(data = NULL, format = NULL, colonnes = TRUE, indicateurs = NULL, pays = NULL, start = NULL, end = NULL, encodage = "UTF-8") {
+  if (format == ".xlsx") {
+    base <- openxlsx::read.xlsx(as.character(data), colNames = colonnes)
+  } else if (format == ".csv_en") {
+    base <- utils::read.csv(as.character(data), header = colonnes, encoding = encodage)
+  } else if (format == ".csv_fr") {
+    base <- utils::read.csv2(as.character(data), header = colonnes, encoding = encodage)
+  } else if (format == ".sav") {
+    base <- haven::read_spss(as.character(data))
+  } else if (format == ".dta") {
+    base <- haven::read_dta(as.character(data))
+  } else if (format == "WDI") {
     base <- WDI::WDI(country = pays, indicator = indicateurs, start = start, end = end)
-    cat("\n")
   }
   base <- tibble::as_tibble(base)
   cat("\n")
