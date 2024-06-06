@@ -39,7 +39,8 @@ vignettes/*.pdf
 .Renviron
 
 # Fichiers personnels
-Config_tests.R
+testfile.R
 system.R
 .vscode
 .lintr
+.gitignore
