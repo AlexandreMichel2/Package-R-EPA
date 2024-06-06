@@ -42,6 +42,7 @@ requireNamespace("ggborderline", quietly = TRUE)
 requireNamespace("sf", quietly = TRUE)
 requireNamespace("rnaturalearth", quietly = TRUE)
 requireNamespace("rnaturalearthdata", quietly = TRUE)
+requireNamespace("riem", quietly = TRUE)
 
 
 .onAttach <- function(libname, pkgname) {
@@ -72,6 +73,7 @@ requireNamespace("rnaturalearthdata", quietly = TRUE)
   conflicted::conflict_prefer(name = "wtd.mean", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "wtd.table", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "wtd.var", winner = "Hmisc", quiet = TRUE)
+  conflicted::conflict_prefer(name = "countries110", winner = "rnaturalearth", quiet = TRUE)
   options(scipen = 999)
   print(conflicted::conflict_scout())
 }
