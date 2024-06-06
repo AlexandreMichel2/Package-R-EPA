@@ -1,6 +1,9 @@
 #### CONFIGURATION ####
 
 requireNamespace("conflicted", quietly = TRUE)
+requireNamespace("Matrix", quietly = TRUE)
+requireNamespace("MASS", quietly = TRUE)
+requireNamespace("jsonlite", quietly = TRUE)
 requireNamespace("showtext", quietly = TRUE)
 requireNamespace("WDI", quietly = TRUE)
 requireNamespace("lsr", quietly = TRUE)
@@ -43,6 +46,8 @@ requireNamespace("sf", quietly = TRUE)
 requireNamespace("rnaturalearth", quietly = TRUE)
 requireNamespace("rnaturalearthdata", quietly = TRUE)
 requireNamespace("riem", quietly = TRUE)
+requireNamespace("httpgd", quietly = TRUE)
+
 
 
 .onAttach <- function(libname, pkgname) {
@@ -74,6 +79,13 @@ requireNamespace("riem", quietly = TRUE)
   conflicted::conflict_prefer(name = "wtd.table", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "wtd.var", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "countries110", winner = "rnaturalearth", quiet = TRUE)
+  conflicted::conflict_prefer(name = "as_npc", winner = "ggpp", quiet = TRUE)
+  conflicted::conflict_prefer(name = "as_npcx", winner = "ggpp", quiet = TRUE)
+  conflicted::conflict_prefer(name = "as_npcy", winner = "ggpp", quiet = TRUE)
+  conflicted::conflict_prefer(name = "expand", winner = "tidyr", quiet = TRUE)
+  conflicted::conflict_prefer(name = "flatten", winner = "purrr", quiet = TRUE)
+  conflicted::conflict_prefer(name = "pack", winner = "tidyr", quiet = TRUE)
+  conflicted::conflict_prefer(name = "unpack", winner = "tidyr", quiet = TRUE)
   options(scipen = 999)
   print(conflicted::conflict_scout())
 }
