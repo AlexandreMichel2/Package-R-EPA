@@ -60,4 +60,9 @@ Depends:
     rnaturalearth,
     rnaturalearthdata,
     riem,
-    httpgd
+    httpgd,
+    htmltools,
+    htmlwidgets,
+    widgetframe,
+    plotly,
+    leaflet
