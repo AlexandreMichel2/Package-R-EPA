@@ -47,8 +47,11 @@ requireNamespace("rnaturalearth", quietly = TRUE)
 requireNamespace("rnaturalearthdata", quietly = TRUE)
 requireNamespace("riem", quietly = TRUE)
 requireNamespace("httpgd", quietly = TRUE)
-
-
+requireNamespace("htmltools", quietly = TRUE)
+requireNamespace("htmlwidgets", quietly = TRUE)
+requireNamespace("widgetframe", quietly = TRUE)
+requireNamespace("plotly", quietly = TRUE)
+requireNamespace("leaflet", quietly = TRUE)
 
 .onAttach <- function(libname, pkgname) {
   showtext::showtext_opts(dpi = 96)
@@ -86,6 +89,11 @@ requireNamespace("httpgd", quietly = TRUE)
   conflicted::conflict_prefer(name = "flatten", winner = "purrr", quiet = TRUE)
   conflicted::conflict_prefer(name = "pack", winner = "tidyr", quiet = TRUE)
   conflicted::conflict_prefer(name = "unpack", winner = "tidyr", quiet = TRUE)
+  conflicted::conflict_prefer(name = "add_heatmap", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "add_markers", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "add_polygons", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "layout", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "subplot", winner = "plotly", quiet = TRUE)
   options(scipen = 999)
   print(conflicted::conflict_scout())
 }
