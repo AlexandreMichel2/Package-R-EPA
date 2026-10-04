@@ -7,9 +7,7 @@ requireNamespace("jsonlite", quietly = TRUE)
 requireNamespace("showtext", quietly = TRUE)
 requireNamespace("WDI", quietly = TRUE)
 requireNamespace("lsr", quietly = TRUE)
-requireNamespace("Hmisc", quietly = TRUE)
 requireNamespace("vcd", quietly = TRUE)
-requireNamespace("questionr", quietly = TRUE)
 requireNamespace("gmodels", quietly = TRUE)
 requireNamespace("car", quietly = TRUE)
 requireNamespace("haven", quietly = TRUE)
@@ -24,6 +22,7 @@ requireNamespace("readr", quietly = TRUE)
 requireNamespace("purrr", quietly = TRUE)
 requireNamespace("tibble", quietly = TRUE)
 requireNamespace("tidyr", quietly = TRUE)
+requireNamespace("janitor", quietly = TRUE)
 requireNamespace("ggthemes", quietly = TRUE)
 requireNamespace("ggtext", quietly = TRUE)
 requireNamespace("ggpubr", quietly = TRUE)
@@ -71,16 +70,11 @@ requireNamespace("leaflet", quietly = TRUE)
   conflicted::conflict_prefer(name = "some", winner = "car", quiet = TRUE)
   conflicted::conflict_prefer(name = "stamp", winner = "lubridate", quiet = TRUE)
   conflicted::conflict_prefer(name = "theme_map", winner = "cowplot", quiet = TRUE)
-  conflicted::conflict_prefer(name = "describe", winner = "Hmisc", quiet = TRUE)
-  conflicted::conflict_prefer(name = "Label", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "Mean", winner = "DescTools", quiet = TRUE)
   conflicted::conflict_prefer(name = "mutate", winner = "dplyr", quiet = TRUE)
   conflicted::conflict_prefer(name = "Quantile", winner = "DescTools", quiet = TRUE)
   conflicted::conflict_prefer(name = "src", winner = "dplyr", quiet = TRUE)
   conflicted::conflict_prefer(name = "summarize", winner = "dplyr", quiet = TRUE)
-  conflicted::conflict_prefer(name = "wtd.mean", winner = "Hmisc", quiet = TRUE)
-  conflicted::conflict_prefer(name = "wtd.table", winner = "Hmisc", quiet = TRUE)
-  conflicted::conflict_prefer(name = "wtd.var", winner = "Hmisc", quiet = TRUE)
   conflicted::conflict_prefer(name = "countries110", winner = "rnaturalearth", quiet = TRUE)
   conflicted::conflict_prefer(name = "as_npc", winner = "ggpp", quiet = TRUE)
   conflicted::conflict_prefer(name = "as_npcx", winner = "ggpp", quiet = TRUE)
@@ -94,6 +88,8 @@ requireNamespace("leaflet", quietly = TRUE)
   conflicted::conflict_prefer(name = "add_polygons", winner = "plotly", quiet = TRUE)
   conflicted::conflict_prefer(name = "layout", winner = "plotly", quiet = TRUE)
   conflicted::conflict_prefer(name = "subplot", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "chisq.test", winner = "stats", quiet = TRUE)
+  conflicted::conflict_prefer(name = "fisher.test", winner = "stats", quiet = TRUE)
   options(scipen = 999)
   print(conflicted::conflict_scout())
 }
@@ -108,7 +104,7 @@ requireNamespace("leaflet", quietly = TRUE)
 #'
 #' @param x Variable indépendante (VI) sous la forme 'base$variable'
 #' @param y Variable dépendante (VD) sous la forme 'base$variable'
-#' @return Équation de la droite en format 'character'.
+#' @invisible Équation de la droite en format 'character'.
 #' @description Sert à imprimer une équation de droite de régression sur un graphique.
 #' @export
 lm_eq <- function(x, y) {
@@ -119,13 +115,13 @@ lm_eq <- function(x, y) {
   } else if (round(coeff[1], 1) < 0) {
     eq <- as.character(paste0("y == ", round(coeff[2], 1), "*x ", round(coeff[1], 1)))
   }
-  eq
+  invisible(eq)
 }
 
 #' theme_pie
 #'
 #' @param couleur Le vert 'Université de Sherbrooke' est la couleur par défaut, mais elle peut être changée manuellement pour toute autre couleur.
-#' @return Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
+#' @invisible Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
 #' @description Thème personnalisé qui retire les fioritures dans un graphique en pointes de tarte, ou 'pie chart'.
 #' @export
 theme_pie <- function(couleur = "#018849", legende = TRUE) {
@@ -177,7 +173,7 @@ theme_pie <- function(couleur = "#018849", legende = TRUE) {
 #' @param couleur Le vert 'Université de Sherbrooke' est la couleur par défaut, mais elle peut être changée manuellement pour toute autre couleur.
 #' @param grille A la valeur 'x' par défaut, ce qui signifie aucune grille. La valeur 'h' permet une grille horizontale seulement, la valeur 'v' une grille verticale et la valeur 'hv' pour les deux grilles.
 #' @param grille_top A la valeur FALSE par défaut, ce qui signifie que la grille se situe sous les objets du graphique, alors que TRUE appose la grille par-dessus.
-#' @return Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
+#' @invisible Retourne le thème qui est ajouté (+) à un graphique fait à partir du package 'ggplot2'.
 #' @description Thème personnalisé qui est fait pour s'ajuster à une présentation sur une document en format lettre (8 1/2 x 11).
 #' @export
 theme_defaut <- function(couleur = "#018849", grille = "x", grille_top = FALSE) {
@@ -269,7 +265,7 @@ theme_defaut <- function(couleur = "#018849", grille = "x", grille_top = FALSE) 
 
 #' marge_erreur
 #'
-#' @return Retourne la valeur de la marge et
+#' @invisible Retourne la valeur de la marge et
 #' @description Fonction interactive qui permet de mesurer la marge derreur dun échantillon à partir du Z, du n et du p. Les valeurs des arguments peuvent être entrées non-interactivement aussi.
 #' @export
 marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
@@ -291,7 +287,7 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
   print(c("Intervalle de confiance (borne inférieure) :", pr - me), quote = FALSE)
   print(c("Intervalle de confiance (borne supérieure) :", pr + me), quote = FALSE)
   cat("\n")
-  return(me)
+  invisible(me)
 }
 
 #### IMPORTATION D'UNE BASE DE DONNÉES ####
@@ -305,7 +301,7 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
 #' @param start Insérer l'année de départ désirée pour la série de données sans guillemet (ex: 1967)
 #' @param end Insérer l'année de fin désirée pour la série de données sans guillemet (ex: 1967)
 #' @param encodage A la valeur 'UTF-8' par défaut afin de lire les caractères comme les accents. Ne changez PAS la valeur de cet argument si vous ne comprenez pas ce dont il est question.
-#' @return Retourne un dataframe transformé en 'tibble' pour en faciliter les manipulations.
+#' @invisible Retourne un dataframe transformé en 'tibble' pour en faciliter les manipulations.
 #' @description Fonction interactive qui importe une base de données qui est sauvegardée dans un fichier, accessible via un URL, ou sinon via la fonction 'WDI()' du package éponyme.
 #' @export
 importer <- function(data = NULL, format = NULL, colonnes = TRUE, indicateurs = NULL, pays = NULL, start = NULL, end = NULL, encodage = "UTF-8") {
@@ -324,7 +320,7 @@ importer <- function(data = NULL, format = NULL, colonnes = TRUE, indicateurs = 
   }
   base <- tibble::as_tibble(base)
   cat("\n")
-  return(base)
+  invisible(base)
 }
 
 #### ALL ZAPS AT THE SAME TIME ####
@@ -333,7 +329,7 @@ importer <- function(data = NULL, format = NULL, colonnes = TRUE, indicateurs = 
 #'
 #' @param base Objet qui représente la base de données.
 #' @description Cette fonction applique toutes les fonctions de type 'zap()' du package Haven. Ces fonctions servent à retirer les éléments de formatage typiques des bases de données STATA et SPSS et ainsi formater les données à R.
-#' @return La base de donnée reformatée qui peut-être être stockée dans un nouvel objet ou servir à écraser une existante.
+#' @invisible La base de donnée reformatée qui peut-être être stockée dans un nouvel objet ou servir à écraser une existante.
 #' @export
 reformater <- function(base) {
   base <- haven::zap_formats(base)
@@ -341,7 +337,7 @@ reformater <- function(base) {
   base <- haven::zap_labels(base)
   base <- haven::zap_missing(base)
   base <- haven::zap_widths(base)
-  return(base)
+  invisible(base)
 }
 
 #### RENOMMER DES VARIABLES ####
@@ -351,7 +347,7 @@ reformater <- function(base) {
 #' @param anciens_noms Les noms des variables à renommer, sous la forme 'c("nom1", "nom2", "nom3")'.
 #' @param nouv_noms Les nouveaux noms choisis pour les mêmes variables, dans le même ordre, toujours sous la forme 'c("nom1", "nom2", "nom3")'.
 #' @description Fonction qui utilise 'rename()' mais qui simplifie son utilisation pour son utilisateur·ice.
-#' @return Retourne le dataframe avec les modifications des noms des variables.
+#' @invisible Retourne le dataframe avec les modifications des noms des variables.
 #' @export
 renommer <- function(base, anciens_noms, nouv_noms) {
   cat("\n")
@@ -359,7 +355,7 @@ renommer <- function(base, anciens_noms, nouv_noms) {
     base <- dplyr::rename(base, !!nouv_noms[i] := !!anciens_noms[i])
   }
   cat("\n")
-  return(base)
+  invisible(base)
 }
 
 #### ANALYSE UNIVARIÉE QUALITATIVE ####
@@ -369,7 +365,7 @@ renommer <- function(base, anciens_noms, nouv_noms) {
 #' @param variable Variable qualitative (ou catégorielle) sous la forme 'base$variable'
 #' @param na.rm A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.
 #' @description Fonction qui effectue une analyse univariée sur une variable qualitative en une seule étape.
-#' @return Retourne le 'tableau des fréquences des valeurs' possibles que peut prendre la variable analysée.
+#' @invisible Retourne le 'tableau des fréquences des valeurs' possibles que peut prendre la variable analysée.
 #' @export
 univar_quali <- function(variable, na.rm = TRUE) {
   if (na.rm == TRUE) {
@@ -377,7 +373,7 @@ univar_quali <- function(variable, na.rm = TRUE) {
   } else if (na.rm == FALSE) {
     x <- variable
   }
-  freqq <- freq(x)
+  freqq <- tabyl(x)
   cat("\n")
   cat("Fréquences des valeurs de la variables :\n")
   cat("\n")
@@ -393,7 +389,7 @@ univar_quali <- function(variable, na.rm = TRUE) {
   }
   print(c("Mode :", mode), quote = FALSE)
   cat("\n")
-  return(list("mode" = mode))
+  invisible(list("mode" = mode))
 }
 
 #### ANALYSE UNIVARIÉE QUANTITATIVE ####
@@ -403,7 +399,7 @@ univar_quali <- function(variable, na.rm = TRUE) {
 #' @param variable Variable quantitative continue sous la forme 'base$variable'
 #' @param na.rm A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.
 #' @description Fonction qui permet effectue une analyse univariée sur une variable quantitative continue en une seule étape.
-#' @return Retourne une liste contenant les mesures de tendance centrale et de dispersion suivantes, dans cet ordre : 'moyenne, médiane et écart-type'.
+#' @invisible Retourne une liste contenant les mesures de tendance centrale et de dispersion suivantes, dans cet ordre : 'moyenne, médiane et écart-type'.
 #' @export
 univar_quanti <- function(variable, na.rm = TRUE) {
   if (na.rm == TRUE) {
@@ -428,7 +424,7 @@ univar_quanti <- function(variable, na.rm = TRUE) {
   print(c("Dernier quartile (75%) :", quantiles[4]), quote = FALSE)
   print(c("Maximum (100%) :", quantiles[5]), quote = FALSE)
   cat("\n")
-  return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
+  invisible(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
 }
 
 # AJOUTER NUAGE DE POINTS ?
@@ -440,7 +436,7 @@ univar_quanti <- function(variable, na.rm = TRUE) {
 #' @param variable_x Variable indépendante sous la forme 'base$variable'.
 #' @param variable_y Variable dépendante sous la forme 'base$variable'.
 #' @description Fonction qui ajoute les noms des deux variables au 'table()'' afin de mieux identifier les colonnes et les rangées.
-#' @return Retourne un tableau qui peut être sauvegardé dans un nouvel objet.
+#' @invisible Retourne un tableau qui peut être sauvegardé dans un nouvel objet.
 #' @export
 table_nomsvar <- function(variable_x, variable_y) {
   x_name_long <- as.character(deparse(substitute(variable_x)))
@@ -453,7 +449,7 @@ table_nomsvar <- function(variable_x, variable_y) {
 
   t1 <- table(variable_y, variable_x)
   names(dimnames(t1)) <- c(y_name, x_name)
-  return(t1)
+  invisible(t1)
 }
 
 #' bivar_quali_quali
@@ -463,7 +459,7 @@ table_nomsvar <- function(variable_x, variable_y) {
 #' @param v_corrige A la valeur 'TRUE' par défaut pour utiliser une version corrigée et donc plus précise du V de Cramer. À changer pour 'FALSE' pour utiliser la version non corrigée.
 #' @param na.rm A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.
 #' @description Fonction qui effectue automatiquement une analyse bivariée entre deux variables qualitatives sélectionnées.
-#' @return Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value et V de Cramer.
+#' @invisible Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value et V de Cramer.
 #' @export
 bivar_quali_quali <- function(variable_x, variable_y, v_corrige = TRUE, na.rm = TRUE) {
   # v_corrige = FALSE --> utilise une version non ajustée du V de Cramer (la version classique)
@@ -527,7 +523,7 @@ bivar_quali_quali <- function(variable_x, variable_y, v_corrige = TRUE, na.rm = 
     print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
     cat("\n")
   }
-  return(list("p_value" = p, "V_Cramer" = v))
+  invisible(list("p_value" = p, "V_Cramer" = v))
 }
 
 #### ANALYSE BIVARIÉE QUALI+QUANTI ####
@@ -539,7 +535,7 @@ bivar_quali_quali <- function(variable_x, variable_y, v_corrige = TRUE, na.rm = 
 #' @param y_ord A la valeur 'FALSE' par défaut pour indiquer que la variable qualitative du croisement est polytomique nominale (donc sans hiérarchie, non-ordinale). Si la variable qualitative est ordinale (comme un niveau de satisfaction), changer la valeur de 'y_ord' pour 'TRUE'.
 #' @param na.rm A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA.
 #' @description Fonction qui effectue automatiquement une analyse bivariée entre une variable qualitative et une variable quantitative. Elle détecte automatiquement si la variable qualitative est dichotomique ou polytomique, mais on doit indiquer manuellement son type si elle est polytomique (ordinale ou nominale).
-#' @return Retourne une liste contenant nécessairement le p-value pour mesurer la significativité, puis la mesure de taille de leffet correspondant au type de croisement : D de Cohen si VI dichotomique et tau de Kendall si VI polytomique ordinale.
+#' @invisible Retourne une liste contenant nécessairement le p-value pour mesurer la significativité, puis la mesure de taille de leffet correspondant au type de croisement : D de Cohen si VI dichotomique et tau de Kendall si VI polytomique ordinale.
 #' @export
 bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TRUE) {
   x_name_long <- as.character(deparse(substitute(variable_x)))
@@ -599,7 +595,7 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
       print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
       cat("\n")
     }
-    return(list("p_value" = p, "D_Cohen" = d))
+    invisible(list("p_value" = p, "D_Cohen" = d))
   } else if (length(unique(x)) > 2) {
     if (y_ord == TRUE) {
       stats <- stats::cor.test(x, y, method = "kendall")
@@ -646,7 +642,7 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
         print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
         cat("\n")
       }
-      return(list("p_value" = p, "tau_Kendall" = tau))
+      invisible(list("p_value" = p, "tau_Kendall" = tau))
     } else if (y_ord == FALSE) {
       x <- as.factor(x)
       anova <- stats::aov(y ~ x)
@@ -673,7 +669,7 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
         print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote = FALSE)
         cat("\n")
       }
-      return(list("p_value" = p))
+      invisible(list("p_value" = p))
     }
   }
 }
@@ -686,7 +682,7 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
 #' @param variable_y Variable dépendante sous la forme 'base$variable'.
 #' @param na.rm A la valeur 'TRUE' par défaut afin de retirer les NA du calcul. Peut être changée pour 'FALSE' afin de considérer les NA. Changer cette valeur pour 'FALSE' pourrait toutefois causer une erreur. Rechanger pour 'TRUE' si cela se produit.
 #' @description Fonction qui permet d'effectuer automatiquement une analyse bivariée entre deux variables quantitatives continues. Si une variable quantitative est recodée en catégories, elle devient généralement une variable qualitative.
-#' @return Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value, r de Pearson (coefficient de corrélation) et R2 (coefficient de détermination).
+#' @invisible Retourne une liste contenant les mesures de significativité et de taille de leffet suivantes, dans cet ordre : p-value, r de Pearson (coefficient de corrélation) et R2 (coefficient de détermination).
 #' @export
 bivar_quanti_quanti <- function(variable_x, variable_y, na.rm = TRUE) {
   x_name_long <- as.character(deparse(substitute(variable_x)))
@@ -777,7 +773,7 @@ bivar_quanti_quanti <- function(variable_x, variable_y, na.rm = TRUE) {
     print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote = FALSE)
     cat("\n")
   }
-  return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
+  invisible(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
 
 #### ANALYSE MULTIVARIÉE REGRESSION LINEAIRE ####
