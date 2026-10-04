@@ -88,6 +88,8 @@ requireNamespace("leaflet", quietly = TRUE)
   conflicted::conflict_prefer(name = "add_polygons", winner = "plotly", quiet = TRUE)
   conflicted::conflict_prefer(name = "layout", winner = "plotly", quiet = TRUE)
   conflicted::conflict_prefer(name = "subplot", winner = "plotly", quiet = TRUE)
+  conflicted::conflict_prefer(name = "chisq.test", winner = "stats", quiet = TRUE)
+  conflicted::conflict_prefer(name = "fisher.test", winner = "stats", quiet = TRUE)
   options(scipen = 999)
   print(conflicted::conflict_scout())
 }
@@ -278,14 +280,14 @@ marge_erreur <- function(z = NULL, pr = NULL, n = NULL) {
   }
   me <- round(((sqrt(pr * (1 - pr) / n)) * z), 4)
   cat("\n")
+  return(me)
+  cat("\n")
   print(c("Taille de l'échantillon :", n), quote = FALSE)
   print(c("Niveau de confiance :", z), quote = FALSE)
   print(c("Proportion :", pr), quote = FALSE)
   print(c("Marge d'erreur :", me), quote = FALSE)
   print(c("Intervalle de confiance (borne inférieure) :", pr - me), quote = FALSE)
   print(c("Intervalle de confiance (borne supérieure) :", pr + me), quote = FALSE)
-  cat("\n")
-  return(me)
 }
 
 #### IMPORTATION D'UNE BASE DE DONNÉES ####
@@ -385,9 +387,9 @@ univar_quali <- function(variable, na.rm = TRUE) {
   } else if (mode == "TRUE" || mode == "FALSE") {
     mode <- as.logical(mode)
   }
-  print(c("Mode :", mode), quote = FALSE)
-  cat("\n")
   return(list("mode" = mode))
+  cat("\n")
+  print(c("Mode :", mode), quote = FALSE)
 }
 
 #### ANALYSE UNIVARIÉE QUANTITATIVE ####
@@ -411,7 +413,7 @@ univar_quanti <- function(variable, na.rm = TRUE) {
     ecart_type <- round(stats::sd(as.numeric(variable), na.rm = FALSE), 2)
     quantiles <- stats::quantile(as.numeric(variable), na.rm = FALSE, names = FALSE)
   }
-
+  return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
   cat("\n")
   print(c("Moyenne :", moyenne), quote = FALSE)
   print(c("Ecart-type :", ecart_type), quote = FALSE)
@@ -421,8 +423,6 @@ univar_quanti <- function(variable, na.rm = TRUE) {
   print(c("Mediane (50%) :", mediane), quote = FALSE)
   print(c("Dernier quartile (75%) :", quantiles[4]), quote = FALSE)
   print(c("Maximum (100%) :", quantiles[5]), quote = FALSE)
-  cat("\n")
-  return(list("moyenne" = moyenne, "mediane" = mediane, "ecart_type" = ecart_type))
 }
 
 # AJOUTER NUAGE DE POINTS ?
@@ -496,7 +496,8 @@ bivar_quali_quali <- function(variable_x, variable_y, v_corrige = TRUE, na.rm = 
   } else if (v_corrige == TRUE) {
     v <- round(DescTools::CramerV(t1, correct = TRUE), 4)
   }
-
+  return(list("p_value" = p, "V_Cramer" = v))
+  cat("\n")
   print(paste("Valeur du p :", p), quote = FALSE)
   cat("\n")
   if (p < 0.05) {
@@ -521,7 +522,6 @@ bivar_quali_quali <- function(variable_x, variable_y, v_corrige = TRUE, na.rm = 
     print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
     cat("\n")
   }
-  return(list("p_value" = p, "V_Cramer" = v))
 }
 
 #### ANALYSE BIVARIÉE QUALI+QUANTI ####
@@ -568,7 +568,8 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
     t.test <- t.test(y ~ x)
     p <- t.test$p.value
     d <- round(lsr::cohensD(y ~ x), 4)
-
+    return(list("p_value" = p, "D_Cohen" = d))
+    cat("\n")
     print(paste("Valeur du p :", p), quote = FALSE)
     cat("\n")
     if (p < 0.05) {
@@ -593,13 +594,13 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
       print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
       cat("\n")
     }
-    return(list("p_value" = p, "D_Cohen" = d))
   } else if (length(unique(x)) > 2) {
     if (y_ord == TRUE) {
       stats <- stats::cor.test(x, y, method = "kendall")
       p <- stats$p.value
       tau <- round(stats$estimate, 4)
-
+      return(list("p_value" = p, "tau_Kendall" = tau))
+      cat("\n")
       print(paste("Valeur du p :", p), quote = FALSE)
       cat("\n")
       if (p < 0.05) {
@@ -640,12 +641,12 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
         print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables."), quote = FALSE)
         cat("\n")
       }
-      return(list("p_value" = p, "tau_Kendall" = tau))
     } else if (y_ord == FALSE) {
       x <- as.factor(x)
       anova <- stats::aov(y ~ x)
       anova.res <- summary(anova) # to print
       p <- anova.res[[1]][[5]][1]
+      return(list("p_value" = p))
       cat("\n")
       cat("\n")
       cat("Modèle d'analyse de la variance à un facteur (one-way ANOVA) : \n")
@@ -667,7 +668,6 @@ bivar_quali_quanti <- function(variable_x, variable_y, y_ord = FALSE, na.rm = TR
         print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de différence significative entre les moyennes des groupes."), quote = FALSE)
         cat("\n")
       }
-      return(list("p_value" = p))
     }
   }
 }
@@ -729,7 +729,8 @@ bivar_quanti_quanti <- function(variable_x, variable_y, na.rm = TRUE) {
   p <- as.numeric(cor$p.value)
   r <- round(as.numeric(cor$estimate), 4)
   r2 <- round((r^2) * 100, 4)
-
+  return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
+  cat("\n")
   print(paste("Valeur du p :", p), quote = FALSE)
   cat("\n")
   if (p < 0.05) {
@@ -771,7 +772,6 @@ bivar_quanti_quanti <- function(variable_x, variable_y, na.rm = TRUE) {
     print(paste("Le croisement entre la variable «", x_name, "» et la variable «", y_name, "» n'est pas statistiquement significatif. Il n'y a donc pas de relation entre les deux variables.\n"), quote = FALSE)
     cat("\n")
   }
-  return(list("p_value" = p, "r_Pearson" = r, "R2" = r2))
 }
 
 #### ANALYSE MULTIVARIÉE REGRESSION LINEAIRE ####
