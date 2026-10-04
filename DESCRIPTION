@@ -23,7 +23,6 @@ Depends:
     WDI,
     lsr,
     vcd,
-    questionr,
     gmodels,
     car,
     haven,
