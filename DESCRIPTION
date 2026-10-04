@@ -38,7 +38,7 @@ Depends:
     purrr,
     tibble,
     tidyr,
-    summarytools,
+    janitor,
     ggthemes,
     ggtext,
     ggpubr,

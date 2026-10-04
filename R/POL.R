@@ -22,7 +22,7 @@ requireNamespace("readr", quietly = TRUE)
 requireNamespace("purrr", quietly = TRUE)
 requireNamespace("tibble", quietly = TRUE)
 requireNamespace("tidyr", quietly = TRUE)
-requireNamespace("summarytools", quietly = TRUE)
+requireNamespace("janitor", quietly = TRUE)
 requireNamespace("ggthemes", quietly = TRUE)
 requireNamespace("ggtext", quietly = TRUE)
 requireNamespace("ggpubr", quietly = TRUE)
@@ -371,7 +371,7 @@ univar_quali <- function(variable, na.rm = TRUE) {
   } else if (na.rm == FALSE) {
     x <- variable
   }
-  freqq <- freq(x)
+  freqq <- tabyl(x)
   cat("\n")
   cat("Fréquences des valeurs de la variables :\n")
   cat("\n")
